@@ -11,7 +11,7 @@ function processArray($arr) {
     for ($a = 0; $a < count($arr); $a++)
     {
         if ($arr[$a] % 2 != 0)
-            echo $arr[$a] . " ";
+            echo $arr[$a] . ", ";
     }
 }
 echo "Problem 1: Odd Output<br>";
