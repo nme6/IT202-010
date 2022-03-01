@@ -82,4 +82,4 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm
     }
 }
 ?>
-<?php require(__DIR__ . "/../../partials/flash.php");
+<?php require(__DIR__ . "/../../partials/flash.php"); ?>
