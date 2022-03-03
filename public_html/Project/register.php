@@ -32,10 +32,11 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm
     // same as above but for password and confirm
     $password = se($_POST, "password", "", false);
     $confirm = se($_POST, "confirm", "", false);
+    $username = se($_POST, "username", "", false);
     //TODO 3: validate/use
     $hasError = false;
     if (empty($email)) {
-        flash("Email must not be empty");
+        flash("Email must not be empty", "danger");
         $hasError = true;
     }
     //sanitize
@@ -47,23 +48,27 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm
         $hasError = true;
     }*/
     if (!is_valid_email($email)) {
-        flash("Invalid email address");
+        flash("Invalid email address", "danger");
+        $hasError = true;
+    }
+    if (!preg_match('/^[a-z0-9_-]{3,16}$/i', $username)) {
+        flash("Username must only be alphanumeric and can only contain - or _", "danger");
         $hasError = true;
     }
     if (empty($password)) {
-        flash("Password must not be empty");
+        flash("Password must not be empty", "danger");
         $hasError = true;
     }
     if (empty($confirm)) {
-        flash("Confirm Password must not be empty");
+        flash("Confirm Password must not be empty", "danger");
         $hasError = true;
     }
     if (strlen($password) < 8) {
-        flash("Password must be >8 characters");
+        flash("Password must be >8 characters", "danger");
         $hasError = true;
     }
     if (strlen($password) > 0 && $password !== $confirm) {
-        flash("Passwords must match");
+        flash("Passwords must match", "danger");
         $hasError = true;
     }
     if (!$hasError) {
@@ -76,8 +81,8 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm
             $stmt->execute([":email" => $email, ":password" => $hash]);
             flash("Successfully registered!");
         } catch (Exception $e) {
-            flash("There was a problem registering");
-            flash("<pre>" . var_export($e, true) . "</pre>");
+            flash("There was a problem registering", "danger");
+            flash("<pre>" . var_export($e, true) . "</pre>", "danger");
         }
     }
 }
