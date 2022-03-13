@@ -2,7 +2,7 @@
 ## Project Summary: This project will create a bank simulation for users. They’ll be able to have various accounts, do standard bank functions like deposit, withdraw, internal (user’s accounts)/external(other user’s accounts) transfers, and creating/closing accounts.
 
 ## Github Link: [https://github.com/nme6/IT202-010/tree/prod/public_html/Project](https://github.com/nme6/IT202-010/tree/prod/public_html/Project)
-## Project Board Link: 
+## Project Board Link:[https://github.com/nme6/IT202-010/projects/1](https://github.com/nme6/IT202-010/projects/1) 
 ## Website Link: [https://nme6-prod.herokuapp.com/Project/](https://nme6-prod.herokuapp.com/Project/)
 ## Your Name: Neil Evans
 
