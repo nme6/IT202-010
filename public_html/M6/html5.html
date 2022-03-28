@@ -49,9 +49,16 @@
         var right = false;
         var left = false;
 
+        /* 
+        Neil Evans (nme6)
+        March 27th, 2022
+        */
+
         // Properties for the target square
         var targetX = 0;
         var targetY = 0;
+        var targetX2 = 0;
+        var targetY2 = 0;
         var targetLength = 25;
 
         // Determine if number a is within the range b to c (exclusive)
@@ -63,6 +70,11 @@
         var countdown = 30;
         // ID to track the setTimeout
         var id = null;
+
+        /* 
+        Neil Evans (nme6)
+        March 27th, 2022
+        */
 
         // Listen for keydown events
         canvas.addEventListener('keydown', function(event) {
@@ -79,6 +91,9 @@
         }
         if (event.keyCode === 39) { // RIGHT
             right = true;
+        }
+        if (event.keyCode === 32) { // Spacebar
+            window.location.reload();
         }
         });
 
@@ -123,29 +138,55 @@
         }, 1000)
         // Stop listening for click events
         canvas.removeEventListener('click', startGame);
-        // Put the target at a random starting point
+
+        /* 
+        Neil Evans (nme6)
+        March 27th, 2022
+        */
+
+        // Put the target and target2 at a random starting point
             moveTarget();
+            moveTarget2();
         // Kick off the draw loop
         draw();
         }
+
+        /* 
+        Neil Evans (nme6)
+        March 27th, 2022
+        */
 
         // Show the game over screen
         function endGame() {
             // Stop the countdown
         clearInterval(id);
-        // Display the final score
+        // Display the final score and instructions for triggering a replay
         erase();
         context.fillStyle = '#000000';
         context.font = '24px Arial';
         context.textAlign = 'center';
-        context.fillText('Final Score: ' + score, canvas.width / 2, canvas.height / 2);
+        context.fillText('Final Score: ' + score, canvas.width / 2, canvas.height / 1.75);
+        context.fillText('Want to replay?', canvas.width / 2, (canvas.height / 4) * 2);
+        context.fillText('Press SPACEBAR to restart/reload the page', canvas.width / 2, (canvas.height / 4) * 2.5);
         }
+
+
+        /* 
+        Neil Evans (nme6)
+        March 27th, 2022
+        */
 
         // Move the target square to a random position
         function moveTarget() {
         targetX = Math.round(Math.random() * canvas.width - targetLength);
-        targetY = Math.round(Math.random() * canvas.height - targetLength)
+        targetY = Math.round(Math.random() * canvas.height - targetLength);
         }
+
+        // Move the target2 square to a random position
+        function moveTarget2() {
+        targetX2 = Math.round(Math.random() * canvas.width - targetLength);
+        targetY2 = Math.round(Math.random() * canvas.height - targetLength);
+        }    
 
         // Clear the canvas
         function erase() {
@@ -182,6 +223,12 @@
         if (x + sideLength > canvas.width) {
             x = canvas.width - sideLength;
         }
+
+        /* 
+        Neil Evans (nme6)
+        March 27th, 2022
+        */
+
         // Collide with the target
         if (isWithin(targetX, x, x + sideLength) || isWithin(targetX + targetLength, x, x + sideLength)) { // X
             if (isWithin(targetY, y, y + sideLength) || isWithin(targetY + targetLength, y, y + sideLength)) { // Y
@@ -191,12 +238,25 @@
             score++;
             }
         }
+        
+        // Collide with the target 2
+        if (isWithin(targetX2, x, x + sideLength) || isWithin(targetX2 + targetLength, x, x + sideLength)) { // X
+            if (isWithin(targetY2, y, y + sideLength) || isWithin(targetY2 + targetLength, y, y + sideLength)) { // Y
+            // Respawn the target
+            moveTarget2();
+            // Increase the score
+            score++;
+            }
+        }
+
         // Draw the square
         context.fillStyle = '#FF0000';
         context.fillRect(x, y, sideLength, sideLength);
         // Draw the target 
         context.fillStyle = '#00FF00';
         context.fillRect(targetX, targetY, targetLength, targetLength);
+        // Draw the target 2
+        context.fillRect(targetX2, targetY2, targetLength, targetLength);
         // Draw the score and time remaining
         context.fillStyle = '#000000';
         context.font = '24px Arial';
