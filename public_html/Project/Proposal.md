@@ -12,7 +12,7 @@
 - [ ] \(mm/dd/yyyy of completion) Feature Title (from the proposal bullet point, if it's a sub-point indent it properly)
   -  Link to related .md file: [Link Name](link url)
 
- End Line item / Feature Template -- DO NOT DELETE THIS SECTION --> 
+ End Line item / Feature Template -- DO NOT DELETE THIS SECTION -->
  
  
 ### Proposal Checklist and Evidence
