@@ -1,23 +1,116 @@
 .alert-success {
-    background-color: green
+    background-color: green;
+    color: black;
+    margin: 0 0 15px -15px;
+    padding: 7.5px;
+    display: inline-block;
 }
 
 .alert-warning {
     background-color: yellow;
+    color: black;
+    margin: 0 0 15px -15px;
+    padding: 7.5px;
+    display: inline-block;
 }
 
 .alert-danger {
     background-color: red;
+    color: black;
+    margin: 0 0 15px -15px;
+    padding: 7.5px;
+    display: inline-block;
 }
 
 .alert-info {
     background-color: teal;
+    color: black;
+    margin: 0 0 15px -15px;
+    padding: 7.5px;
+    display: inline-block;
 }
-nav li{display: inline; background-color: rebeccapurple;}
-nav li a{color: hotpink}
-input{border-radius: 50%;}
-body{
-    background-color: hotpink;
-    color: rgb(153, 0, 153);
 
+nav ul {
+    list-style-type: none;
+    padding-bottom: 30px;
+    background-color: #1e1e1e;
+}
+
+nav ul li {
+    display: inline;
+    padding: 15px;
+}
+
+nav li a {
+    display: block;
+    float: left;
+    font-weight: bold;
+    font-size: 16px;
+    text-decoration: none;
+    padding: 15px 15px;
+    color: silver;
+}
+
+nav li a:hover {
+    background-color: #111111;
+    color: white;
+    text-shadow: 0 2px 2px gray;
+}
+
+div {
+    padding: 0 0 5px 15px;
+}
+
+#normaltext{
+    padding: 0 0 5px 15px;
+    font-weight: bold;
+}
+
+label {
+    display: inline-block;
+    clear: left;
+    width: 100px;
+}
+
+/* Segoe UI Font Family Stack from https://www.cssfontstack.com/Segoe-UI */
+
+input {
+    margin: 0 0 0 35px;
+    font-family: Segoe UI,Frutiger,Frutiger Linotype,Dejavu Sans,Helvetica Neue,Arial,sans-serif; 
+}
+
+input[type=submit] {
+    background-color: silver;
+    font-family: Segoe UI,Frutiger,Frutiger Linotype,Dejavu Sans,Helvetica Neue,Arial,sans-serif; 
+    color: #1e1e1e;
+    padding: 3px 10px;
+    margin-left: 15px;
+}
+
+input[type=submit]:hover {
+    background-color: dimgray;
+    color: silver;
+    -webkit-transition: color .45s ease;
+    transition: color .45s ease;
+    -webkit-transition: background-color .45s ease;
+    transition: background-color .45s ease;
+}
+
+textarea {
+    margin-left: 35px;
+}
+
+body {
+    background-color: #7c3e3e;
+    font-family: Segoe UI,Frutiger,Frutiger Linotype,Dejavu Sans,Helvetica Neue,Arial,sans-serif; 
+    margin: 0;
+    color: white;
+}
+
+h1 {
+    padding-left: 15px;
+}
+
+table {
+    padding-left: 15px;
 }
