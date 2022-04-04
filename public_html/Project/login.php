@@ -4,7 +4,7 @@ require(__DIR__ . "/../../partials/nav.php");
 <form onsubmit="return validate(this)" method="POST">
     <div>
         <label for="email">Email/Username</label>
-        <input type="text" name="email" required />
+        <input type="text" id="email" name="email" />
     </div>
     <div>
         <label for="pw">Password</label>
@@ -17,9 +17,35 @@ require(__DIR__ . "/../../partials/nav.php");
         //TODO 1: implement JavaScript validation
         //ensure it returns false for an error and true for success
 
+        // Regex from: https://digitalfortress.tech/js/top-15-commonly-used-regex/ (linked on Canvas)
+        const emailRegex = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/;
+        const usernameRegex = /^[a-z0-9_-]{3,16}$/;
+        
+        let isValid = true;
+
+        // Check if email/username input is valid
+        let emailUsernameInput = document.getElementById("email").value;
+
+        if (emailUsernameInput == "") {
+            flash("Email/username cannot be empty", "danger");
+            isValid = false;
+        }
+        else if (emailUsernameInput.includes("@")) {
+            if (!emailRegex.test(emailUsernameInput)) {
+                flash("Email is invalid", "warning");
+                isValid = false;
+            }
+        }
+        else {
+            if (!usernameRegex.test(emailUsernameInput)) {
+                flash("Username is invalid", "warning");
+                isValid = false;
+            }
+        }
+
         //TODO update clientside validation to check if it should
         //valid email or username
-        return true;
+        return isValid;
     }
 </script>
 <?php
@@ -92,10 +118,10 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
                         flash("Welcome, " . get_username());
                         die(header("Location: home.php"));
                     } else {
-                        flash("Invalid password");
+                        flash("Invalid password", "danger");
                     }
                 } else {
-                    flash("Email not found");
+                    flash("Email/Username not found", "danger");
                 }
             }
         } catch (Exception $e) {
