@@ -10,7 +10,7 @@
 
 
 - [ ] \(mm/dd/yyyy of completion) Feature Title (from the proposal bullet point, if it's a sub-point indent it properly)
-  -  Link to related .md file: [Link Name](link url)
+  -  [Milestone 1](https://github.com/nme6/IT202-010/blob/Milestone1/public_html/Project/milestone1.md)
 
  End Line item / Feature Template -- DO NOT DELETE THIS SECTION -->
  
@@ -19,23 +19,34 @@
 
 - Milestone 1
   - [ ] \(mm/dd/yyyy of completion) User will be able to register a new account
-    -  Link to related .md file: [Link Name](link url) 
+    - [Milestone 1](https://github.com/nme6/IT202-010/blob/Milestone1/public_html/Project/milestone1.md) 
+    - [http://nme6-prod.herokuapp.com/Project/register.php](http://nme6-prod.herokuapp.com/Project/register.php)
   - [ ] \(mm/dd/yyyy of completion) User will be able to login to their account (given they enter the correct credentials)
-    -  Link to related .md file: [Link Name](link url)
+    - [Milestone 1](https://github.com/nme6/IT202-010/blob/Milestone1/public_html/Project/milestone1.md)
+    - [http://nme6-prod.herokuapp.com/Project/login.php](http://nme6-prod.herokuapp.com/Project/login.php)
   - [ ] \(mm/dd/yyyy of completion) User will be able to logout
-    -  Link to related .md file: [Link Name](link url)
+    - [Milestone 1](https://github.com/nme6/IT202-010/blob/Milestone1/public_html/Project/milestone1.md)
+    - [http://nme6-prod.herokuapp.com/Project/logout.php](http://nme6-prod.herokuapp.com/Project/logout.php)
   - [ ] \(mm/dd/yyyy of completion) Basic security rules implemented
-    -  Link to related .md file: [Link Name](link url)
+    - [Milestone 1](https://github.com/nme6/IT202-010/blob/Milestone1/public_html/Project/milestone1.md)
+    - [http://nme6-prod.herokuapp.com/Project/profile.php](http://nme6-prod.herokuapp.com/Project/profile.php)
   - [ ] \(mm/dd/yyyy of completion) Basic Roles implemented
-    -  Link to related .md file: [Link Name](link url)
+    - [Milestone 1](https://github.com/nme6/IT202-010/blob/Milestone1/public_html/Project/milestone1.md)
+    - [http://nme6-prod.herokuapp.com/Project/admin/create_role.php](http://nme6-prod.herokuapp.com/Project/admin/create_role.php)
   - [ ] \(mm/dd/yyyy of completion) Site should have basic styles/theme applied; everything should be styled
-    -  Link to related .md file: [Link Name](link url)
+    - [Milestone 1](https://github.com/nme6/IT202-010/blob/Milestone1/public_html/Project/milestone1.md)
+    - [https://nme6-prod.herokuapp.com/Project/home.php](https://nme6-prod.herokuapp.com/Project/home.php)
+    - [https://nme6-prod.herokuapp.com/Project/styles.css](https://nme6-prod.herokuapp.com/Project/styles.css)
   - [ ] \(mm/dd/yyyy of completion) Any output messages/errors should be “user friendly”
-    -  Link to related .md file: [Link Name](link url)
+    - [Milestone 1](https://github.com/nme6/IT202-010/blob/Milestone1/public_html/Project/milestone1.md)
+    - [Profile Page (edit your user for example)](http://nme6-prod.herokuapp.com/Project/profile.php)
+    - [Logout Page (will show message upon logout)](http://nme6-prod.herokuapp.com/Project/logout.php)
   - [ ] \(mm/dd/yyyy of completion) User will be able to see their profile
-    -  Link to related .md file: [Link Name](link url)
+    - [Milestone 1](https://github.com/nme6/IT202-010/blob/Milestone1/public_html/Project/milestone1.md)
+    - [http://nme6-prod.herokuapp.com/Project/profile.php](http://nme6-prod.herokuapp.com/Project/profile.php)
   - [ ] \(mm/dd/yyyy of completion) User will be able to edit their profile
-    -  Link to related .md file: [Link Name](link url)
+    - [Milestone 1](https://github.com/nme6/IT202-010/blob/Milestone1/public_html/Project/milestone1.md)
+    - [http://nme6-prod.herokuapp.com/Project/profile.php](http://nme6-prod.herokuapp.com/Project/profile.php)
 - Milestone 2
   - (duplicate template here for Milestone 1 features)
 - Milestone 3
