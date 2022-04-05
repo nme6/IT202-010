@@ -18,33 +18,34 @@
 ### Proposal Checklist and Evidence
 
 - Milestone 1
-  - [ ] \(mm/dd/yyyy of completion) User will be able to register a new account
+  - Note: For any feature with a due date of 04/04/2022, this is because I am considering it completed after adding the validation JS to the respective feature. It also is because I pushed a PR out on 04/04/2022 and that included multiple features completion (whether validation JS or CSS styling).
+  - [x] \(04/04/2022) User will be able to register a new account
     - [Milestone 1](https://github.com/nme6/IT202-010/blob/Milestone1/public_html/Project/milestone1.md) 
     - [http://nme6-prod.herokuapp.com/Project/register.php](http://nme6-prod.herokuapp.com/Project/register.php)
-  - [ ] \(mm/dd/yyyy of completion) User will be able to login to their account (given they enter the correct credentials)
+  - [x] \(04/04/2022) User will be able to login to their account (given they enter the correct credentials)
     - [Milestone 1](https://github.com/nme6/IT202-010/blob/Milestone1/public_html/Project/milestone1.md)
     - [http://nme6-prod.herokuapp.com/Project/login.php](http://nme6-prod.herokuapp.com/Project/login.php)
-  - [ ] \(mm/dd/yyyy of completion) User will be able to logout
+  - [x] \(03/22/2022) User will be able to logout
     - [Milestone 1](https://github.com/nme6/IT202-010/blob/Milestone1/public_html/Project/milestone1.md)
     - [http://nme6-prod.herokuapp.com/Project/logout.php](http://nme6-prod.herokuapp.com/Project/logout.php)
-  - [ ] \(mm/dd/yyyy of completion) Basic security rules implemented
+  - [x] \(04/04/2022) Basic security rules implemented
     - [Milestone 1](https://github.com/nme6/IT202-010/blob/Milestone1/public_html/Project/milestone1.md)
     - [http://nme6-prod.herokuapp.com/Project/profile.php](http://nme6-prod.herokuapp.com/Project/profile.php)
-  - [ ] \(mm/dd/yyyy of completion) Basic Roles implemented
+  - [x] \(03/29/2022) Basic Roles implemented
     - [Milestone 1](https://github.com/nme6/IT202-010/blob/Milestone1/public_html/Project/milestone1.md)
     - [http://nme6-prod.herokuapp.com/Project/admin/create_role.php](http://nme6-prod.herokuapp.com/Project/admin/create_role.php)
-  - [ ] \(mm/dd/yyyy of completion) Site should have basic styles/theme applied; everything should be styled
+  - [x] \(04/04/2022) Site should have basic styles/theme applied; everything should be styled
     - [Milestone 1](https://github.com/nme6/IT202-010/blob/Milestone1/public_html/Project/milestone1.md)
     - [https://nme6-prod.herokuapp.com/Project/home.php](https://nme6-prod.herokuapp.com/Project/home.php)
     - [https://nme6-prod.herokuapp.com/Project/styles.css](https://nme6-prod.herokuapp.com/Project/styles.css)
-  - [ ] \(mm/dd/yyyy of completion) Any output messages/errors should be “user friendly”
+  - [x] \(03/22/2022 (Logout) and 04/04/2022 (Flash JS Validation)) Any output messages/errors should be “user friendly”
     - [Milestone 1](https://github.com/nme6/IT202-010/blob/Milestone1/public_html/Project/milestone1.md)
     - [Profile Page (edit your user for example)](http://nme6-prod.herokuapp.com/Project/profile.php)
     - [Logout Page (will show message upon logout)](http://nme6-prod.herokuapp.com/Project/logout.php)
-  - [ ] \(mm/dd/yyyy of completion) User will be able to see their profile
+  - [x] \(04/04/2022) User will be able to see their profile
     - [Milestone 1](https://github.com/nme6/IT202-010/blob/Milestone1/public_html/Project/milestone1.md)
     - [http://nme6-prod.herokuapp.com/Project/profile.php](http://nme6-prod.herokuapp.com/Project/profile.php)
-  - [ ] \(mm/dd/yyyy of completion) User will be able to edit their profile
+  - [x] \(04/04/2022) User will be able to edit their profile
     - [Milestone 1](https://github.com/nme6/IT202-010/blob/Milestone1/public_html/Project/milestone1.md)
     - [http://nme6-prod.herokuapp.com/Project/profile.php](http://nme6-prod.herokuapp.com/Project/profile.php)
 - Milestone 2
