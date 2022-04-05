@@ -36,7 +36,7 @@
     - [http://nme6-prod.herokuapp.com/Project/admin/create_role.php](http://nme6-prod.herokuapp.com/Project/admin/create_role.php)
   - [x] \(04/04/2022) Site should have basic styles/theme applied; everything should be styled
     - [Milestone 1](https://github.com/nme6/IT202-010/blob/Milestone1/public_html/Project/milestone1.md)
-    - [https://nme6-prod.herokuapp.com/Project/home.php](https://nme6-prod.herokuapp.com/Project/home.php)
+    - [https://nme6-prod.herokuapp.com/Project/home.php](https://nme6-prod.herokuapp.com/Project/profile.php)
     - [https://nme6-prod.herokuapp.com/Project/styles.css](https://nme6-prod.herokuapp.com/Project/styles.css)
   - [x] \(03/22/2022 (Logout) and 04/04/2022 (Flash JS Validation)) Any output messages/errors should be “user friendly”
     - [Milestone 1](https://github.com/nme6/IT202-010/blob/Milestone1/public_html/Project/milestone1.md)
