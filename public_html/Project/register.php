@@ -1,10 +1,15 @@
 <?php
 require(__DIR__ . "/../../partials/nav.php");
+
 ?>
 <form onsubmit="return validate(this)" method="POST">
     <div>
         <label for="email">Email</label>
-        <input type="email" name="email" required />
+        <input type="email" id="email" name="email" required />
+    </div>
+    <div>
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required maxlength="30" />
     </div>
     <div>
         <label for="pw">Password</label>
@@ -12,7 +17,7 @@ require(__DIR__ . "/../../partials/nav.php");
     </div>
     <div>
         <label for="confirm">Confirm</label>
-        <input type="password" name="confirm" required minlength="8" />
+        <input type="password" id="confirm" name="confirm" required minlength="8" />
     </div>
     <input type="submit" value="Register" />
 </form>
@@ -20,71 +25,99 @@ require(__DIR__ . "/../../partials/nav.php");
     function validate(form) {
         //TODO 1: implement JavaScript validation
         //ensure it returns false for an error and true for success
+        // email and username
+        // Regex from: https://digitalfortress.tech/js/top-15-commonly-used-regex/ (linked on Canvas)
+        const emailRegex = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/;
+        const usernameRegex = /^[a-z0-9_-]{3,16}$/;
+        
+        let isValid = true;
 
-        return true;
+        // Check if email input is valid
+        let emailInput = document.getElementById("email").value;
+        if (emailInput.includes("@")) {
+            if (!emailRegex.test(emailInput)) {
+                flash("Email is invalid", "warning");
+                isValid = false;
+            }
+        }
+        
+        // Check if username input is invalid (matching regex provided (length and characters))
+        let usernameInput = document.getElementById("username").value;
+        if (!usernameRegex.test(usernameInput)) {
+            flash("Username can only contain 3-16 characters a-z, 0-9, _, or -", "warning");
+            isValid = false;
+        }
+
+        // Check if password and confirm password are valid (matching and lenght)
+        let passwordInput = document.getElementById("pw").value;
+        let confirmPWInput = document.getElementById("confirm").value;
+
+        if (passwordInput.length > 0 && passwordInput !== confirmPWInput) {
+            flash("Password and Confirm Password must match", "warning");
+            document.getElementById("pw").value = "";
+            document.getElementById("confirm").value = "";
+            isValid = false;
+        }
+
+        return isValid;
     }
 </script>
 <?php
 //TODO 2: add PHP Code
-if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm"])) {
-    // get the email key from $_POST, default to "" if not set, and return the value
+if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm"]) && isset($_POST["username"])) {
     $email = se($_POST, "email", "", false);
-    // same as above but for password and confirm
     $password = se($_POST, "password", "", false);
     $confirm = se($_POST, "confirm", "", false);
     $username = se($_POST, "username", "", false);
-    //TODO 3: validate/use
+    //TODO 3
     $hasError = false;
     if (empty($email)) {
         flash("Email must not be empty", "danger");
         $hasError = true;
     }
     //sanitize
-    //$email = filter_var($email, FILTER_SANITIZE_EMAIL);
     $email = sanitize_email($email);
     //validate
-    /*if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        flash("Invalid email");
-        $hasError = true;
-    }*/
     if (!is_valid_email($email)) {
         flash("Invalid email address", "danger");
         $hasError = true;
     }
-    if (!preg_match('/^[a-z0-9_-]{3,16}$/i', $username)) {
-        flash("Username must only be alphanumeric and can only contain - or _", "danger");
+    if (!is_valid_username($username)) {
+        flash("Username must only contain 3-16 characters a-z, 0-9, _, or -", "danger");
         $hasError = true;
     }
     if (empty($password)) {
-        flash("Password must not be empty", "danger");
+        flash("password must not be empty", "danger");
         $hasError = true;
     }
     if (empty($confirm)) {
-        flash("Confirm Password must not be empty", "danger");
+        flash("Confirm password must not be empty", "danger");
         $hasError = true;
     }
-    if (strlen($password) < 8) {
-        flash("Password must be >8 characters", "danger");
+    if (!is_valid_password($password)) {
+        flash("Password too short", "danger");
         $hasError = true;
     }
-    if (strlen($password) > 0 && $password !== $confirm) {
+    if (
+        strlen($password) > 0 && $password !== $confirm
+    ) {
         flash("Passwords must match", "danger");
         $hasError = true;
     }
     if (!$hasError) {
         //TODO 4
-        flash("Welcome, $email ");
         $hash = password_hash($password, PASSWORD_BCRYPT);
         $db = getDB();
-        $stmt = $db->prepare("INSERT INTO Users (email, password) VALUES(:email, :password)");
+        $stmt = $db->prepare("INSERT INTO Users (email, password, username) VALUES(:email, :password, :username)");
         try {
-            $stmt->execute([":email" => $email, ":password" => $hash]);
-            flash("Successfully registered!");
+            $stmt->execute([":email" => $email, ":password" => $hash, ":username" => $username]);
+            flash("Successfully registered!", "success");
         } catch (Exception $e) {
-            flash("There was a problem registering", "danger");
-            flash("<pre>" . var_export($e, true) . "</pre>", "danger");
+            users_check_duplicate($e->errorInfo);
         }
     }
 }
 ?>
-<?php require(__DIR__ . "/../../partials/flash.php"); ?>
+<?php
+require(__DIR__ . "/../../partials/flash.php");
+?>
