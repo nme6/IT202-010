@@ -2,8 +2,8 @@
 require(__DIR__ . "/../../partials/nav.php");
 
 ?>
-<div class="container-fluid">
-    <h1>Register</h1>
+<div class="container-fluid col-lg-4 offset-lg-4">
+    <h1 style="padding-top: 10px">Register</h1>
     <form onsubmit="return validate(this)" method="POST">
         <div class="mb-3">
             <label class="form-label" for="email">Email</label>
