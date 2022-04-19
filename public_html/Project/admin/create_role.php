@@ -29,7 +29,7 @@ if (isset($_POST["name"]) && isset($_POST["description"])) {
 }
 ?>
 <div class="container-fluid col-lg-4 offset-lg-4">
-    <h1 style="padding-top: 10px">Create Role</h1>
+    <h1><span>Create Role</span></h1>
     <form method="POST">
         <div>
             <label class="form-label" for="name">Name</label>
