@@ -106,7 +106,10 @@ h1 {
     display: inline-block;
 }
 
-
+/*
+Credit for rainbow animation:
+https://codepen.io/zak/pen/rWJzPy
+*/
 @keyframes rainbow{
     100%,0%{
         color: rgb(255,0,0);
