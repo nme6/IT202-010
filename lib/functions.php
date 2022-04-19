@@ -22,4 +22,16 @@ require(__DIR__ . "/duplicate_user_details.php");
 require(__DIR__ . "/reset_session.php");
 
 require(__DIR__ . "/get_url.php");
+
+// Get or Create Account
+require(__DIR__ . "/get_or_create_account.php");
+// Get account balance
+require(__DIR__ . "/get_account_balance.php");
+// Refresh account balance
+require(__DIR__ . "/refresh_account_balance.php");
+// Get user account ID
+require(__DIR__ . "/get_user_account_id.php");
+// Balance the change (transaction)
+// Passed as a positive value, coming from account_src, going to account_dest
+require(__DIR__ . "/balance_change.php");
 ?>
