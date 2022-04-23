@@ -70,8 +70,8 @@
   - [ ] \(mm/dd/yyyy of completion) User will be able to create a checking account
     * System will generate a unique 12 digit account number
         * **Options (strike out the option you won’t do):**
-            * **Option 1:** Generate a random 12 digit/character value; must regenerate if a duplicate collision occurs
-            * ~~**Option 2: **Generate the number based on the id column; requires inserting a null first to get the last insert id, then update the record immediately after~~
+            * ~~**Option 1:** Generate a random 12 digit/character value; must regenerate if a duplicate collision occurs~~
+            * **Option 2:** Generate the number based on the id column; requires inserting a null first to get the last insert id, then update the record immediately after
     * System will associate the account to the user
     * Account type will be set as checking
     * Will require a minimum deposit of $5 (from the world account)
