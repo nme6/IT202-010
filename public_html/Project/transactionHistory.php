@@ -71,7 +71,7 @@ if (isset($_POST["account_id"]))
     <div class="text-center"><h1><span>Transaction History</span></h1></div>
         <?php if (empty($accounts)) : ?>
             <tr>
-                <td colspan="100%">No accounts</td>
+                <td colspan="100%">No accounts found</td>
             </tr>
         <?php else : ?>
             <?php foreach ($accounts as $account) : ?>
@@ -100,10 +100,9 @@ if (isset($_POST["account_id"]))
                 <th>Memo</th>
                 <th>Date & Time</th>
             </thead>
-
             <?php if (empty($transactions)) : ?>
                 <tr>
-                    <td colspan="100%">No transactions</td>
+                    <td colspan="100%">No transactions found</td>
                 </tr>
             <?php else : ?>
                 <?php foreach ($transactions as $transaction) : ?>
