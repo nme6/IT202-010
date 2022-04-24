@@ -2,7 +2,6 @@
 require(__DIR__ . "/../../partials/nav.php");
 
 if (!is_logged_in()) {
-    flash("You don't have permission to view this page", "warning");
     die(header("Location: " . get_url("home.php")));
 }
 
@@ -27,7 +26,7 @@ if (isset($_POST["checkings"]) && isset($_POST["deposit"]))
                 $stmt->execute([":an" => $an, ":uid" => null, ":type" => null, ":deposit" => null]);
                 $account_id = $db->lastInsertId();
                 $an = str_pad($account_id,12,"202", STR_PAD_LEFT);
-                balance_change($deposit, "deposit", -1, $account_id, "opening balance");
+                balance_change($deposit, "deposit", -1, $account_id, "Opening balance");
                 refresh_account_balance();
                 $stmt->execute([":an" => $an, ":uid" => $uid, ":type" => $type, ":deposit" => $deposit]);
                 
@@ -49,6 +48,10 @@ if (isset($_POST["checkings"]) && isset($_POST["deposit"]))
             }
         }
     }
+    $aid = $account_id + 1;
+    balance_change($deposit, "deposit", $aid, -1, $aid, "opening balance");
+    refresh_account_balance($aid);
+    die(header("Location: " . get_url("my_accounts.php")));
 }
 else
     flash("Account type must be selected", "warning");
