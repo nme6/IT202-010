@@ -81,7 +81,6 @@ if (isset($_POST["account_id"]))
                     <input type="hidden" name="account_type" value="<?php se($account, 'account_type'); ?>" />
                     <input type="hidden" name="balance" value="<?php se($account, 'balance'); ?>" />
                     <input type="hidden" name="created" value="<?php se($account, 'created'); ?>" />
-
                     <div class="text-center">
                         <input type="submit" class="btn btn-primary" style="padding: 1px 5px 1px" value="Grab Transaction History" />
                     </div>
