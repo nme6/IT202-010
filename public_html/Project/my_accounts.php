@@ -41,7 +41,7 @@ try {
         <tbody>
             <?php if (empty($accounts)) : ?>
                 <tr>
-                    <td colspan="100%">No accounts</td>
+                    <td colspan="100%">No accounts found</td>
                 </tr>
             <?php else : ?>
                 <?php foreach ($accounts as $account) : ?>
