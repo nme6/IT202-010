@@ -1,9 +1,75 @@
 <?php
 require(__DIR__ . "/../../partials/nav.php");
+
+if (!is_logged_in()) {
+    flash("You don't have permission to view this page", "warning");
+    die(header("Location: " . get_url("home.php")));
+}
+
+if (isset($_POST["checkings"]) && isset($_POST["deposit"])) 
+{
+    $type = "checkings";
+    $deposit = (int)se($_POST, "deposit", "", false);
+    if ($deposit < 5) 
+    {
+        flash("Minimum deposit is $5", "warning");
+    } 
+    else 
+    {
+        try 
+        {
+            $db = getDB();
+            $an = null;
+            $stmt = $db->prepare("INSERT INTO Accounts (account_number, user_id, balance, account_type) VALUES(:an, :uid, :deposit, :type)");
+            $uid = get_user_id(); //caching a reference
+
+            try {
+                $stmt->execute([":an" => $an, ":uid" => null, ":type" => null, ":deposit" => null]);
+                $account_id = $db->lastInsertId();
+                $an = str_pad($account_id,12,"202", STR_PAD_LEFT);
+                balance_change($deposit, "deposit", -1, $account_id, "opening balance");
+                refresh_account_balance();
+                $stmt->execute([":an" => $an, ":uid" => $uid, ":type" => $type, ":deposit" => $deposit]);
+                
+                flash("Successfully created account!", "success");
+            } 
+            catch (PDOException $e) {
+                flash("An unexpected error occurred, please try again " . var_export($e->errorInfo, true), "danger");
+            }
+        }
+        catch (PDOException $e) 
+        {
+            $code = se($e->errorInfo, 0, "00000", false);
+            //if it's a duplicate error, just let the loop happen
+            //otherwise throw the error since it's likely something looping won't resolve
+            //and we don't want to get stuck here forever
+            if ($code !== "23000") 
+            {
+                throw $e;
+            }
+        }
+    }
+}
+else
+    flash("Account type must be selected", "warning");
 ?>
+
 <div class="container-fluid col-lg-4 offset-lg-4">
-    <h1 style="padding-top: 10px">Create Account</h1>
-    <p> This is where the create account page and stuff will go </p>
+    <h1><span>Create Account</span></h1>
+    <form method="POST">
+        <div class="form-check">
+            <h4 style="margin-left:-24px">Account Type</h4>
+            <input class="form-check-input" type="radio" name="checkings" id="checkings">
+            <label class="form-check-label" for="checkings">
+                Checkings
+            </label>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="d">Deposit (Min = $5.00) </label>
+            <input class="form-control" type="number" name="deposit" id="d"></input>
+        </div>
+        <input type="submit" class="mt-3 btn btn-primary" value="Create Account" />
+    </form>
 </div>
 <?php
 require(__DIR__ . "/../../partials/flash.php");

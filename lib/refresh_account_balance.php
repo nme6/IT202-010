@@ -8,7 +8,6 @@ function refresh_account_balance()
         $stmt = $db->prepare($query);
         try {
             $stmt->execute([":src" => get_user_account_id()]);
-            get_or_create_account(); //refresh session data
         } catch (PDOException $e) {
             flash("Error refreshing account: " . var_export($e->errorInfo, true), "danger");
         }

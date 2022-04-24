@@ -23,8 +23,6 @@ require(__DIR__ . "/reset_session.php");
 
 require(__DIR__ . "/get_url.php");
 
-// Get or Create Account
-require(__DIR__ . "/get_or_create_account.php");
 // Get account balance
 require(__DIR__ . "/get_account_balance.php");
 // Refresh account balance
