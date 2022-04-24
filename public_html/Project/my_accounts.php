@@ -27,7 +27,6 @@ try {
 } catch (PDOException $e) {
     flash(var_export($e->errorInfo, true), "danger");
 }
-
 ?>
 <div class="container-fluid col-lg-7">
     <div class="text-center"><h1><span>My Accounts</span></h1></div>
@@ -36,8 +35,8 @@ try {
             <th>Account Number</th>
             <th>Account Type</th>
             <th>Account Balance</th>
-            <th> </th>
-            <th> </th>
+            <th>Account Info</th>
+            <th>Transaction History</th>
         </thead>
         <tbody>
             <?php if (empty($accounts)) : ?>
