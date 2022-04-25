@@ -1,5 +1,5 @@
 <?php
-function balance_change($balance_change, $transaction_type, $account_src = -1, $account_dest = -1, $memo = "")
+function balance_change($balance_change, $transaction_type, $aid, $account_src = -1, $account_dest = -1, $memo = "")
 {
     //Ignore record of 0 point transactions
     if ($balance_change > 0) 
@@ -25,9 +25,9 @@ function balance_change($balance_change, $transaction_type, $account_src = -1, $
             //Only refresh the balance of the user if the logged in user's account is part of the transfer
             //this is needed so future features don't waste time/resources or potentially cause an error when a calculation
             //occurs without a logged in user
-            if ($account_src == get_user_account_id() || $account_dest == get_user_account_id()) 
+            if ($account_src == $aid || $account_dest == $aid) 
             {
-                refresh_account_balance();
+                refresh_account_balance($aid);
             }
         } 
         catch (PDOException $e) 

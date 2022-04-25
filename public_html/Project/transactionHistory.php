@@ -43,10 +43,10 @@ global $transactions; $transactions = [];
 if (isset($_POST["account_id"]))
 {
     $src_id = (int)se($_POST, "account_id", "", false);
-    $query = "SELECT src, dest, transactionType, balanceChange, memo, created from Transaction_History ";
+    $query = "SELECT account_src, account_dest, transaction_type, balance_change, memo, created from Transaction_History ";
     $params = null;
 
-    $query .= " WHERE src = :src_id";
+    $query .= " WHERE account_src = :src_id";
     $params =  [":src_id" => "$src_id"];
 
     $query .= " ORDER BY created desc LIMIT 10";
