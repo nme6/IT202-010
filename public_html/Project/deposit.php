@@ -67,7 +67,7 @@ $uid = get_user_id();
             </div>
             <div class="mb-3">
                 <label class="form-label" for="d">Amount to Deposit</label>
-                <input class="form-control" type="number" name="deposit" placeholder="Amount ($)" id="d"></input>
+                <input class="form-control" type="number" name="deposit" placeholder="Amount" id="d"></input>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="m">Memo</label>
