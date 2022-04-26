@@ -6,7 +6,7 @@ if (!is_logged_in()) {
 }
 
 $uid = get_user_id();
-$query = "SELECT account_number, account_type, balance, created, id from Accounts ";
+$query = "SELECT account_number, account_type, balance, created, modified, id from Accounts ";
 $params = null;
 
 $query .= " WHERE user_id = :uid";
@@ -27,16 +27,43 @@ try {
 } catch (PDOException $e) {
     flash(var_export($e->errorInfo, true), "danger");
 }
+
+if (isset($_POST["account_id"]))
+{
+    $src_id = (int)se($_POST, "account_id", "", false);
+    $query = "SELECT account_src, account_dest, transaction_type, balance_change, memo, created from Transaction_History ";
+    $params = null;
+
+    $query .= " WHERE account_src = :src_id";
+    $params =  [":src_id" => "$src_id"];
+
+    $query .= " ORDER BY created desc LIMIT 10";
+    $db = getDB();
+    $stmt = $db->prepare($query);
+    global $transactions; $transactions = [];
+
+    try {
+        $stmt->execute($params);
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if ($results) {
+            $transactions = $results;
+        } else {
+            flash("No transactions found", "warning");
+        }
+    } catch (PDOException $e) {
+        flash(var_export($e->errorInfo, true), "danger");
+    }     
+}
 ?>
-<div class="container-fluid col-lg-7">
-    <div class="text-center"><h1><span>My Accounts</span></h1></div>
+<div class="container-fluid col-xl-10 offset-xl-1">
+    <h1><span>My Accounts</span></h1>
     <table class="table table-bordered">
         <thead>
             <th>Account Number</th>
             <th>Account Type</th>
             <th>Account Balance</th>
-            <th>Account Info</th>
-            <th>Transaction History</th>
+            <th>Modified</th>
+            <th>More Info</th>
         </thead>
         <tbody>
             <?php if (empty($accounts)) : ?>
@@ -49,6 +76,7 @@ try {
                         <td><?php se($account, "account_number"); ?></td>
                         <td><?php se($account, "account_type"); ?></td>
                         <td><?php se($account, "balance"); ?></td>
+                        <td><?php se($account, "modified"); ?></td>
                         <td>
                             <form method="POST">
                                 <input type="hidden" name="account_id" value="<?php se($account, 'id'); ?>" />
@@ -56,11 +84,8 @@ try {
                                 <input type="hidden" name="account_type" value="<?php se($account, 'account_type'); ?>" />
                                 <input type="hidden" name="balance" value="<?php se($account, 'balance'); ?>" />
                                 <input type="hidden" name="created" value="<?php se($account, 'created'); ?>" />
-                                <div class="text-center"><input type="submit" class="btn btn-primary" style="padding: 1px 5px 1px; margin: 10px 0 -2.5px 0" value="Account Info" /></div>
+                                <div class="text-center"><input type="submit" class="btn btn-primary" style="padding: 1px 5px 1px; margin: 10px 0 -2.5px 0" value="More Info" /></div>
                             </form>
-                        </td>
-                        <td>
-                            <div class="text-center"><a href="transactionHistory.php"><input type="button" class="btn btn-primary" style="padding: 1px 5px 1px; margin-top: 10px" value="Transaction History" /></a></div>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -69,10 +94,10 @@ try {
     </table>
 </div>
 
-<div class="container-fluid col-xl-10 ">
+<div class="container-fluid col-xl-10 offset-xl-1">
     <?php if (isset($_POST["account_id"])) : ?>
         <h1><span>Account Information</span></h1>
-        <table class="table">
+        <table class="table table-bordered">
             <thead>
                 <th>Account Number</th>
                 <th>Account Type</th>
@@ -85,6 +110,32 @@ try {
                 <td><?php se($_POST, "balance"); ?></td>
                 <td><?php se($_POST, "created"); ?></td>
             </tr>
+        </table>
+        <h1><span>Transaction History</span></h1>
+        <table class="table table-bordered">
+            <thead>
+                <th>Source</th>
+                <th>Destination</th>
+                <th>Transaction Type</th>
+                <th>Balance Change</th>
+                <th>Memo</th>
+                <th>Date & Time</th>
+            </thead>
+            <?php if (empty($transactions)) : ?>
+                <tr>
+                    <td colspan="100%">No transactions found</td>
+                </tr>
+            <?php else : ?>
+                <?php foreach ($transactions as $transaction) : ?>
+                    <tr>
+                        <td><?php se($transaction, "account_src"); ?></td>
+                        <td><?php se($transaction, "account_dest"); ?></td>
+                        <td><?php se($transaction, "transaction_type"); ?></td>
+                        <td><?php se($transaction, "balance_change"); ?></td>
+                        <td><?php se($transaction, "memo"); ?></td>
+                        <td><?php se($transaction, "created"); ?></td>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </table>
     <?php endif; ?>
 </div>
