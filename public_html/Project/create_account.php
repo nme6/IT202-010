@@ -26,8 +26,6 @@ if (isset($_POST["checkings"]) && isset($_POST["deposit"]))
                 $stmt->execute([":an" => $an, ":uid" => null, ":type" => null, ":deposit" => null]);
                 $account_id = $db->lastInsertId();
                 $an = str_pad($account_id,12,"202", STR_PAD_LEFT);
-                balance_change($deposit, "deposit", -1, $account_id, "Opening balance");
-                refresh_account_balance();
                 $stmt->execute([":an" => $an, ":uid" => $uid, ":type" => $type, ":deposit" => $deposit]);
                 
                 flash("Successfully created account!", "success");
@@ -49,7 +47,7 @@ if (isset($_POST["checkings"]) && isset($_POST["deposit"]))
         }
     }
     $aid = $account_id + 1;
-    balance_change($deposit, "deposit", $aid, -1, $aid, "opening balance");
+    balance_change($deposit, "deposit", $aid, -1, $aid, "Opening balance");
     refresh_account_balance($aid);
     die(header("Location: " . get_url("my_accounts.php")));
 }

@@ -9,5 +9,6 @@ CREATE TABLE IF NOT EXISTS Transaction_History (
     memo varchar(280) default null, 
     expected_total int, 
     FOREIGN KEY (account_src) REFERENCES Accounts(id), 
-    FOREIGN KEY (account_dest) REFERENCES Accounts(id)
+    FOREIGN KEY (account_dest) REFERENCES Accounts(id),
+    constraint ZeroTransferNotAllowed CHECK(balance_change != 0)
 )
