@@ -1,11 +1,11 @@
 <?php
-require(__DIR__ . "/../../partials/nav.php");
+    require(__DIR__ . "/../../partials/nav.php");
 
-if (!is_logged_in()) {
-    die(header("Location: " . get_url("home.php")));
-}
+    if (!is_logged_in()) {
+        die(header("Location: " . get_url("home.php")));
+    }
 
-$uid = get_user_id();
+    $uid = get_user_id();
     $query = "SELECT account_number, account_type, balance, created, id from Accounts ";
     $params = null;
 
