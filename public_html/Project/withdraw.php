@@ -5,7 +5,7 @@ if (!is_logged_in()) {
     die(header("Location: " . get_url("home.php")));
 }
 
-$uid = get_user_id();
+    $uid = get_user_id();
     $query = "SELECT account_number, account_type, balance, created, id from Accounts ";
     $params = null;
 
@@ -36,21 +36,26 @@ $uid = get_user_id();
         $withdraw = (int)se($_POST, "withdraw", "", false);
         $aid = se($_POST, "account_id", "", false);
         $memo = $_POST["memo"];
+        $balance = get_account_balance($aid);
+        //flash("balance = $balance");
         if (!($withdraw > 0))
         {
             flash("Input a value to withdraw (Greater than 0)", "warning");
         }
         else if($withdraw > get_account_balance($aid))
+        {
             flash("Insufficient Funds", "warning");
+        }
         else
         {
             balance_change($withdraw, "withdraw",$aid, $aid, -1, $memo);
             refresh_account_balance($aid);
             flash("Withdraw was successful", "success");
+            die(header("Location: " . get_url("my_accounts.php")));
         }
     }
     else
-        flash("No account has been selected", "warning");
+        flash("Account Not Selected", "warning");
 ?>
 <div class="container-fluid col-lg-4 offset-lg-4">
     <h1 style="padding-top: 10px">Withdraw</h1>
