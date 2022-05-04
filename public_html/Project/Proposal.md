@@ -130,7 +130,7 @@
     * System shouldn’t allow the user to transfer more funds than what’s available in **account_src**
     * Form should allow the user to record a memo for the transaction
     * Each transaction is recorded as a transaction pair in the Transaction table
-        * These will reflect in the transaction history page
+      * These will reflect in the transaction history page
     * Show appropriate user-friendly error messages
     * Show user-friendly success messages
     -  [Milestone 3](https://github.com/nme6/IT202-010/blob/Milestone3/public_html/Project/milestone3.md)
@@ -154,7 +154,7 @@
     * Show user-friendly success messages
     * Transaction will be recorded with the type as “ext-transfer”
     * Each transaction is recorded as a transaction pair in the Transaction table
-        * These will reflect in the transaction history page
+      * These will reflect in the transaction history page
     -  [Milestone 3](https://github.com/nme6/IT202-010/blob/Milestone3/public_html/Project/milestone3.md)
 - Milestone 4
   - (duplicate template here for Milestone 1 features)
