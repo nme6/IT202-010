@@ -1,81 +1,63 @@
 .alert-success {
     background-color: green;
     color: black;
-    margin: 0 0 15px -15px;
-    padding: 7.5px;
-    display: inline-block;
+    border-color: green;
+    text-align: center;
+    font-weight: 500;
+    font-size: 18px;
+    margin-top: 15px;
 }
 
 .alert-warning {
     background-color: yellow;
     color: black;
-    margin: 0 0 15px -15px;
-    padding: 7.5px;
-    display: inline-block;
+    border-color: yellow;
+    text-align: center;
+    font-weight: 500;
+    font-size: 18px;
+    margin-top: 15px;
 }
 
 .alert-danger {
     background-color: red;
     color: black;
-    margin: 0 0 15px -15px;
-    padding: 7.5px;
-    display: inline-block;
+    border-color: red;
+    text-align: center;
+    font-weight: 500;
+    font-size: 18px;
+    margin-top: 15px;
 }
 
 .alert-info {
     background-color: teal;
     color: black;
-    margin: 0 0 15px -15px;
-    padding: 7.5px;
-    display: inline-block;
-}
-
-nav ul {
-    list-style-type: none;
-    padding-bottom: 30px;
-    background-color: #1e1e1e;
-}
-
-nav ul li {
-    display: inline;
-    padding: 15px;
-}
-
-nav li a {
-    display: block;
-    float: left;
-    font-weight: bold;
-    font-size: 16px;
-    text-decoration: none;
-    padding: 15px 15px;
-    color: silver;
+    border-color: teal;
+    text-align: center;
+    font-weight: 500;
+    font-size: 18px;
+    margin-top: 15px;
 }
 
 nav li a:hover {
     background-color: #111111;
     color: white;
-    text-shadow: 0 2px 2px gray;
 }
 
-div {
-    padding: 0 0 5px 15px;
+.navbar .navbar-nav .nav-link:hover {
+    background-color: #111111;
+}  
+
+.navbar {
+    padding: 0;
 }
 
-#normaltext{
-    padding: 0 0 5px 15px;
-    font-weight: bold;
-}
-
-label {
-    display: inline-block;
-    clear: left;
-    width: 100px;
+.navbar .navbar-nav .nav-link {
+    padding: 16px 12px;
 }
 
 /* Segoe UI Font Family Stack from https://www.cssfontstack.com/Segoe-UI */
 
 input {
-    margin: 0 0 0 35px;
     font-family: Segoe UI,Frutiger,Frutiger Linotype,Dejavu Sans,Helvetica Neue,Arial,sans-serif; 
 }
 
@@ -83,8 +65,7 @@ input[type=submit] {
     background-color: silver;
     font-family: Segoe UI,Frutiger,Frutiger Linotype,Dejavu Sans,Helvetica Neue,Arial,sans-serif; 
     color: #1e1e1e;
-    padding: 3px 10px;
-    margin-left: 15px;
+    border-color:#111111;
 }
 
 input[type=submit]:hover {
@@ -94,10 +75,48 @@ input[type=submit]:hover {
     transition: color .45s ease;
     -webkit-transition: background-color .45s ease;
     transition: background-color .45s ease;
+    border-color:#a3a3a3;
 }
 
-textarea {
-    margin-left: 35px;
+input[type=button] {
+    background-color: silver;
+    font-family: Segoe UI,Frutiger,Frutiger Linotype,Dejavu Sans,Helvetica Neue,Arial,sans-serif; 
+    color: #1e1e1e;
+    border-color:#111111;
+}
+
+input[type=button]:hover {
+    background-color: dimgray;
+    color: silver;
+    -webkit-transition: color .45s ease;
+    transition: color .45s ease;
+    -webkit-transition: background-color .45s ease;
+    transition: background-color .45s ease;
+    border-color:#a3a3a3;
+}
+
+.table td {
+    background-color: #b46464;
+    border: 2px solid black;
+}
+
+.table th {
+    background-color: #2e2e2e;
+    color: white;
+    border: 2px solid black;
+}
+
+.table {
+    border: 2px solid black;
+}
+
+a.list-group-item {
+    background-color: #b46464;
+    color: white;
+    font-weight: 500;
+    font-size: 18px;
+    text-align: center;
+    padding: 10px 0 10px 0;
 }
 
 body {
@@ -107,10 +126,57 @@ body {
     color: white;
 }
 
-h1 {
-    padding-left: 15px;
+h1:hover{
+    animation: rainbow 3.5s linear;
+    animation-iteration-count: infinite;
+    -webkit-text-stroke: 1px;
+    -webkit-text-stroke-color: black; 
 }
 
-table {
-    padding-left: 15px;
+h1 {
+    padding-top: 10px;
+    display: inline-block;
+}
+
+/*
+Credit for rainbow animation:
+https://codepen.io/zak/pen/rWJzPy
+*/
+@keyframes rainbow{
+    100%,0%{
+        color: rgb(255,0,0);
+    }
+    8%{
+        color: rgb(255,127,0);
+    }
+    16%{
+        color: rgb(255,255,0);
+    }
+    25%{
+        color: rgb(127,255,0);
+    }
+    33%{
+        color: rgb(0,255,0);
+    }
+    41%{
+        color: rgb(0,255,127);
+    }
+    50%{
+        color: rgb(0,255,255);
+    }
+    58%{
+        color: rgb(0,127,255);
+    }
+    66%{
+        color: rgb(0,0,255);
+    }
+    75%{
+        color: rgb(127,0,255);
+    }
+    83%{
+        color: rgb(255,0,255);
+    }
+    91%{
+        color: rgb(255,0,127);
+    }
 }
