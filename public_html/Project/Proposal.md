@@ -49,9 +49,10 @@
     - [Milestone 1](https://github.com/nme6/IT202-010/blob/Milestone1/public_html/Project/milestone1.md)
     - [http://nme6-prod.herokuapp.com/Project/profile.php](http://nme6-prod.herokuapp.com/Project/profile.php)
 - Milestone 2
-  - [ ] \(mm/dd/yyyy of completion)  Create the <span style="text-decoration:underline;">Accounts</span> table (id, account_number [unique, always 12 characters], user_id, balance (default 0), account_type, created, modified)
+  - [x] \(04/18/2022)  Create the <span style="text-decoration:underline;">Accounts</span> table (id, account_number [unique, always 12 characters], user_id, balance (default 0), account_type, created, modified)
     -  [Milestone 2](https://github.com/nme6/IT202-010/blob/Milestone2/public_html/Project/milestone2.md)
-  - [ ] \(mm/dd/yyyy of completion) Project setup steps:
+    -  [http://nme6-prod.herokuapp.com/Project/create_account.php](http://nme6-prod.herokuapp.com/Project/create_account.php)
+  - [x] \(04/18/2022) Project setup steps:
     * Create these as initial setup scripts in the sql folder
         * Create a system user if they don’t exist (this will never be logged into, it’s just to keep things working per system requirements)
             * Hint, id should be a negative value
@@ -60,14 +61,17 @@
             * User_id must be the id of the system user
             * Account type must be “world”
     -  [Milestone 2](https://github.com/nme6/IT202-010/blob/Milestone2/public_html/Project/milestone2.md)
-  - [ ] \(mm/dd/yyyy of completion) Create the <span style="text-decoration:underline;">Transactions</span> table (see reference at end of document) 
+    -  [http://nme6-prod.herokuapp.com/Project/my_accounts.php](http://nme6-prod.herokuapp.com/Project/my_accounts.php)
+  - [x] \(04/18/2022) Create the <span style="text-decoration:underline;">Transactions</span> table (see reference at end of document) 
     * Id, created, modified, account_src, account_dest, balance_change, transaction_type, memo, expected_total, created, modified
     -  [Milestone 2](https://github.com/nme6/IT202-010/blob/Milestone2/public_html/Project/milestone2.md)
-  - [ ] \(mm/dd/yyyy of completion) Dashboard page
+    -  [http://nme6-prod.herokuapp.com/Project/my_accounts.php](http://nme6-prod.herokuapp.com/Project/my_accounts.php)
+  - [x] \(04/19/2022) Dashboard page
     * Will have links for Create Account, My Accounts, Deposit, Withdraw Transfer, Profile
         * Links that don’t have pages yet should just have href=”#”, you’ll update them later
     -  [Milestone 2](https://github.com/nme6/IT202-010/blob/Milestone2/public_html/Project/milestone2.md)
-  - [ ] \(mm/dd/yyyy of completion) User will be able to create a checking account
+    -  [http://nme6-prod.herokuapp.com/Project/home.php](http://nme6-prod.herokuapp.com/Project/home.php)
+  - [x] \(04/24/2022) User will be able to create a checking account
     * System will generate a unique 12 digit account number
         * **Options (strike out the option you won’t do):**
             * ~~**Option 1:** Generate a random 12 digit/character value; must regenerate if a duplicate collision occurs~~
@@ -82,17 +86,20 @@
     * User will see user-friendly success message when account is created successfully
         * Redirect user to their Accounts page upon success
     -  [Milestone 2](https://github.com/nme6/IT202-010/blob/Milestone2/public_html/Project/milestone2.md)
-  - [ ] \(mm/dd/yyyy of completion) User will be able to list their accounts
+    -  [http://nme6-prod.herokuapp.com/Project/create_account.php](http://nme6-prod.herokuapp.com/Project/create_account.php)
+  - [x] \(04/24/2022) User will be able to list their accounts
     * Limit results to 5 for now
     * Show account number, account type, modified, and balance
     -  [Milestone 2](https://github.com/nme6/IT202-010/blob/Milestone2/public_html/Project/milestone2.md)
-  - [ ] \(mm/dd/yyyy of completion) User will be able to click an account for more information (a.k.a Transaction History page)
+    -  [http://nme6-prod.herokuapp.com/Project/my_accounts.php](http://nme6-prod.herokuapp.com/Project/my_accounts.php)
+  - [x] \(04/26/2022) User will be able to click an account for more information (a.k.a Transaction History page)
     * Show account number, account type, balance, opened/created date of the selected account
     * Show transaction history (from Transactions table)
         * For now limit results to 10 latest
         * Show the src/dest accounts, the transaction type, the change in balance, when it occurred, expected total, and the memo
     -  [Milestone 2](https://github.com/nme6/IT202-010/blob/Milestone2/public_html/Project/milestone2.md)
-  - [ ] \(mm/dd/yyyy of completion) User will be able to deposit/withdraw from their account(s)
+    -  [http://nme6-prod.herokuapp.com/Project/my_accounts.php](http://nme6-prod.herokuapp.com/Project/my_accounts.php)
+  - [x] \(05/01/2022) User will be able to deposit/withdraw from their account(s)
     * Form should have a dropdown of _their_ accounts to pick from
         * World account should not be in the dropdown as it’s not owned by anyone
     * Form should have a field to enter a positive numeric value
@@ -114,6 +121,8 @@
     * Show appropriate user-friendly error messages
     * Show user-friendly success messages
     -  [Milestone 2](https://github.com/nme6/IT202-010/blob/Milestone2/public_html/Project/milestone2.md)
+    -  [http://nme6-prod.herokuapp.com/Project/deposit.php](http://nme6-prod.herokuapp.com/Project/deposit.php)
+    -  [http://nme6-prod.herokuapp.com/Project/withdraw.php](http://nme6-prod.herokuapp.com/Project/withdraw.php)
 - Milestone 3
   - (duplicate template here for Milestone 1 features)
 - Milestone 4
