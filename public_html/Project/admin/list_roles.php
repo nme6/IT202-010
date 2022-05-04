@@ -44,46 +44,48 @@ try {
 }
 
 ?>
-<h1>List Roles</h1>
-<form method="POST">
-    <input type="search" name="role" placeholder="Role Filter" />
-    <input type="submit" value="Search" />
-</form>
-<table>
-    <thead>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Active</th>
-        <th>Action</th>
-    </thead>
-    <tbody>
-        <?php if (empty($roles)) : ?>
-            <tr>
-                <td colspan="100%">No roles</td>
-            </tr>
-        <?php else : ?>
-            <?php foreach ($roles as $role) : ?>
+<div class="container-fluid col-lg-4 offset-lg-4">
+    <h1><span>List Roles</span></h1>
+    <form method="POST">
+        <input class="form-control" type="search" name="role" placeholder="Role Filter" />
+        <input type="submit" class="mt-3 btn btn-primary" value="Search" />
+    </form>
+    <table>
+        <thead>
+            <th style="padding: 15px">ID</th>
+            <th style="padding: 15px">Name</th>
+            <th style="padding: 15px">Description</th>
+            <th style="padding: 15px">Active</th>
+            <th style="padding: 15px">Action</th>
+        </thead>
+        <tbody>
+            <?php if (empty($roles)) : ?>
                 <tr>
-                    <td><?php se($role, "id"); ?></td>
-                    <td><?php se($role, "name"); ?></td>
-                    <td><?php se($role, "description"); ?></td>
-                    <td><?php echo (se($role, "is_active", 0, false) ? "active" : "disabled"); ?></td>
-                    <td>
-                        <form method="POST">
-                            <input type="hidden" name="role_id" value="<?php se($role, 'id'); ?>" />
-                            <?php if (isset($search) && !empty($search)) : ?>
-                                <?php /* if this is part of a search, lets persist the search criteria so it reloads correctly*/ ?>
-                                <input type="hidden" name="role" value="<?php se($search, null); ?>" />
-                            <?php endif; ?>
-                            <input type="submit" value="Toggle" />
-                        </form>
-                    </td>
+                    <td colspan="100%">No roles</td>
                 </tr>
-            <?php endforeach; ?>
-        <?php endif; ?>
-    </tbody>
-</table>
+            <?php else : ?>
+                <?php foreach ($roles as $role) : ?>
+                    <tr>
+                        <td><?php se($role, "id"); ?></td>
+                        <td><?php se($role, "name"); ?></td>
+                        <td><?php se($role, "description"); ?></td>
+                        <td><?php echo (se($role, "is_active", 0, false) ? "active" : "disabled"); ?></td>
+                        <td>
+                            <form method="POST">
+                                <input type="hidden" name="role_id" value="<?php se($role, 'id'); ?>" />
+                                <?php if (isset($search) && !empty($search)) : ?>
+                                    <?php /* if this is part of a search, lets persist the search criteria so it reloads correctly*/ ?>
+                                    <input type="hidden" name="role" value="<?php se($search, null); ?>" />
+                                <?php endif; ?>
+                                <input type="submit" class="mt-3 btn btn-primary" value="Toggle" />
+                            </form>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </tbody>
+    </table>
+</div>
 <?php
 //note we need to go up 1 more directory
 require_once(__DIR__ . "/../../../partials/flash.php");
