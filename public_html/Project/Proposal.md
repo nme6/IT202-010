@@ -125,7 +125,7 @@
     -  [http://nme6-prod.herokuapp.com/Project/withdraw.php](http://nme6-prod.herokuapp.com/Project/withdraw.php)
 - Milestone 3
   - [ ] \(mm/dd/yyyy of completion) User will be able to transfer between their accounts
-    * Form should include a dropdown first **account_src **and a dropdown for **account_dest **(only accounts the user owns; no world account)
+    * Form should include a dropdown first **account_src** and a dropdown for **account_dest** (only accounts the user owns; no world account)
     * Form should include a field for a positive numeric value
     * System shouldn’t allow the user to transfer more funds than what’s available in **account_src**
     * Form should allow the user to record a memo for the transaction
