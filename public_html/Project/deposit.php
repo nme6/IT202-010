@@ -52,7 +52,7 @@
         flash("No account has been selected", "warning");
 ?>
 <div class="container-fluid col-lg-4 offset-lg-4">
-    <h1 style="padding-top: 10px">Deposit</h1>
+    <h1><span>Deposit</span></h1>
     <div>
         <form method="POST">
             <div class="mb-3">
@@ -64,7 +64,8 @@
                             <?php se($account, "account_number"); ?> (Type: <?php se($account, 'account_type'); ?>; Balance = $<?php se($account, "balance"); ?>)
                         </option>
                     <?php endforeach; ?>
-                <?php endif; ?> 
+                <?php endif; ?>
+                </select>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="d">Amount to Deposit</label>
