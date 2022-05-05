@@ -8,7 +8,7 @@ require(__DIR__ . "/../../partials/nav.php");
         <a href="<?php echo get_url('my_accounts.php'); ?>" class="list-group-item list-group-item-action">View My Accounts</a></li>
         <a href="<?php echo get_url('deposit.php'); ?>" class="list-group-item list-group-item-action">Deposit</a></li>
         <a href="<?php echo get_url('withdraw.php'); ?>" class="list-group-item list-group-item-action">Withdraw</a></li>
-        <a href="#" class="list-group-item list-group-item-action">Transfer</a></li>
+        <a href="<?php echo get_url('transfer.php'); ?>" class="list-group-item list-group-item-action">Transfer</a></li>
         <a href="<?php echo get_url('profile.php'); ?>" class="list-group-item list-group-item-action">Profile</a></li>
     </div>
 </div>
