@@ -64,7 +64,8 @@
                             <?php se($account, "account_number"); ?> (Type: <?php se($account, 'account_type'); ?>; Balance = $<?php se($account, "balance"); ?>)
                         </option>
                     <?php endforeach; ?>
-                <?php endif; ?> 
+                <?php endif; ?>
+                </select>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="d">Amount to Deposit</label>
