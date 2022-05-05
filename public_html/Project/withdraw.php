@@ -58,7 +58,7 @@
         flash("Account Not Selected", "warning");
 ?>
 <div class="container-fluid col-lg-4 offset-lg-4">
-    <h1 style="padding-top: 10px">Withdraw</h1>
+    <h1><span>Withdraw</span></h1>
     <div>
         <form method="POST">
             <div class="mb-3">
