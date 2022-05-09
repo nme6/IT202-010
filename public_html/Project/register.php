@@ -1,6 +1,6 @@
 <?php
 require(__DIR__ . "/../../partials/nav.php");
-
+reset_session();
 ?>
 <div class="container-fluid col-lg-4 offset-lg-4">
     <h1><span>Register</span></h1>
@@ -12,6 +12,14 @@ require(__DIR__ . "/../../partials/nav.php");
         <div class="mb-3">
             <label class="form-label" for="username">Username</label>
             <input class="form-control" type="text" name="username" required maxlength="30" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="firstname">First Name</label>
+            <input  class="form-control" type="text" name="firstname" required maxlength="30" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="lastname">Last Name</label>
+            <input  class="form-control" type="text" name="lastname" required maxlength="30" />
         </div>
         <div class="mb-3">
             <label class="form-label" for="pw">Password</label>
@@ -51,7 +59,7 @@ require(__DIR__ . "/../../partials/nav.php");
             isValid = false;
         }
 
-        // Check if password and confirm password are valid (matching and lenght)
+        // Check if password and confirm password are valid (matching and length)
         let passwordInput = document.getElementById("pw").value;
         let confirmPWInput = document.getElementById("confirm").value;
 
@@ -72,6 +80,8 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm
     $password = se($_POST, "password", "", false);
     $confirm = se($_POST, "confirm", "", false);
     $username = se($_POST, "username", "", false);
+    $firstname = se($_POST, "firstname", "", false);
+    $lastname = se($_POST, "lastname", "", false);
     //TODO 3
     $hasError = false;
     if (empty($email)) {
@@ -88,6 +98,16 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm
     if (!is_valid_username($username)) {
         flash("Username must only contain 3-16 characters a-z, 0-9, _, or -", "danger");
         $hasError = true;
+    }
+    if(empty($firstname))
+    {
+        flash("First name must be set", "danger");
+        $hasErrors = true;
+    }
+    if(empty($lastname))
+    {
+        flash("Last name must be set", "danger");
+        $hasErrors = true;
     }
     if (empty($password)) {
         flash("password must not be empty", "danger");
@@ -111,9 +131,9 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm
         //TODO 4
         $hash = password_hash($password, PASSWORD_BCRYPT);
         $db = getDB();
-        $stmt = $db->prepare("INSERT INTO Users (email, password, username) VALUES(:email, :password, :username)");
+        $stmt = $db->prepare("INSERT INTO Users (email, password, username, firstname, lastname) VALUES(:email, :password, :username, :firstname, :lastname)");
         try {
-            $stmt->execute([":email" => $email, ":password" => $hash, ":username" => $username]);
+            $stmt->execute([":email" => $email, ":password" => $hash, ":username" => $username, ":firstname" => $firstname, ":lastname" => $lastname]);
             flash("Successfully registered!", "success");
         } catch (Exception $e) {
             users_check_duplicate($e->errorInfo);

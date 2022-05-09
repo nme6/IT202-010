@@ -39,4 +39,9 @@ require(__DIR__ . "/paginate.php");
 // persistQueryString (updates or inserts page into query)
 require(__DIR__ . "/persistQueryString.php");
 
+// Profile First Name and Last Name Check
+// First Name
+require(__DIR__ . "/get_user_firstname.php");
+// Last Name
+require(__DIR__ . "/get_user_lastname.php");
 ?>
