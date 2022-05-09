@@ -200,14 +200,14 @@ if (isset($_REQUEST["account_id"]))
             </tr>
         </table>
     <?php endif; ?>
-    <?php if (!isset($_POST["account_id"])) : ?>
-        <h2 class="pt-3">Where is my account information?</h2>
-        <p>Due to a technical issue, I am unable to get the Account Information table to display properly when filtering or pagination is applied.
-            To negate this issue, I am just clearing the table from the screen when filtering or pagination is applied. To get the table back, you
-            will need to click the "More Info" button for each account. I apologize for this technical issue.
-        </p>
-    <?php endif; ?>
     <?php if (isset($_REQUEST["account_id"])) : ?>
+        <?php if (!isset($_POST["account_id"])) : ?>
+            <h2 class="pt-3">Where is my account information?</h2>
+            <p>Due to a technical issue, I am unable to get the Account Information table to display properly when filtering or pagination is applied.
+                To negate this issue, I am just clearing the table from the screen when filtering or pagination is applied. To get the table back, you
+                will need to click the "More Info" button for each account. I apologize for this technical issue.
+            </p>
+        <?php endif; ?>
         <h1><span>Transaction History</span></h1>
         <!-- Sorting and filter insertion -->
         <div>
