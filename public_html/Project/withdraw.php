@@ -55,7 +55,7 @@
         }
     }
     else
-        flash("Account Not Selected", "warning");
+        flash("No account has been selected", "warning");
 ?>
 <div class="container-fluid col-lg-4 offset-lg-4">
     <h1><span>Withdraw</span></h1>
