@@ -5,9 +5,10 @@ if (!is_logged_in()) {
     die(header("Location: " . get_url("home.php")));
 }
 
-if (isset($_POST["checkings"]) && isset($_POST["deposit"])) 
+if (isset($_POST["acct_type"]) && isset($_POST["deposit"])) 
 {
-    $type = "checkings";
+    $type = se($_POST, "acct_type", "", false);
+    $apy = getAPY($type);
     $deposit = (int)se($_POST, "deposit", "", false);
     if ($deposit < 5) 
     {
@@ -19,14 +20,14 @@ if (isset($_POST["checkings"]) && isset($_POST["deposit"]))
         {
             $db = getDB();
             $an = null;
-            $stmt = $db->prepare("INSERT INTO Accounts (account_number, user_id, balance, account_type) VALUES(:an, :uid, :deposit, :type)");
+            $stmt = $db->prepare("INSERT INTO Accounts (account_number, user_id, balance, account_type, apy) VALUES(:an, :uid, :deposit, :type, :apy)");
             $uid = get_user_id(); //caching a reference
 
             try {
-                $stmt->execute([":an" => $an, ":uid" => null, ":type" => null, ":deposit" => null]);
+                $stmt->execute([":an" => $an, ":uid" => null, ":type" => null, ":deposit" => null, ":apy" => null]);
                 $account_id = $db->lastInsertId();
                 $an = str_pad($account_id,12,"202", STR_PAD_LEFT);
-                $stmt->execute([":an" => $an, ":uid" => $uid, ":type" => $type, ":deposit" => $deposit]);
+                $stmt->execute([":an" => $an, ":uid" => $uid, ":type" => $type, ":deposit" => $deposit, ":apy" => $apy]);
                 
                 flash("Successfully created account!", "success");
             } 
@@ -59,11 +60,11 @@ else
     <h1><span>Create Account</span></h1>
     <form method="POST">
         <div class="form-check">
-            <h4 style="margin-left:-24px">Account Type</h4>
-            <input class="form-check-input" type="radio" name="checkings" id="checkings">
-            <label class="form-check-label" for="checkings">
-                Checkings
-            </label>
+            <label for="sourceList" class="form-label">Account Type</label>
+            <select>
+                <option value="checkings">Checkings</option>
+                <option value="savings">Savings</option>
+            </select>
         </div>
         <div class="mb-3">
             <label class="form-label" for="d">Deposit (Min = $5.00) </label>
