@@ -162,7 +162,9 @@
     -  [Milestone 3](https://github.com/nme6/IT202-010/blob/Milestone3/public_html/Project/milestone3.md)
     -  [http://nme6-prod.herokuapp.com/Project/external_transfer.php](http://nme6-prod.herokuapp.com/Project/external_transfer.php)
 - Milestone 4
-  - Test push again
+  - (duplicate template here for Milestone 1 features)
+  - 
+>>>>>>> 00cb93b79a7becc4c1569f35f4a8c434ed71d74c
 ### Intructions
 #### Don't delete this
 1. Pick one project type
