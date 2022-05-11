@@ -226,8 +226,8 @@ if (isset($_REQUEST["account_id"]))
                     </select>
                     <span class="input-group-text" id="sort">Sort</span>
                     <select class="form-control" name="sort" aria-label="sort" aria-describedby="sort">
-                        <option value="descend">Descending (New → Old)</option>
-                        <option value="ascend">Ascending (Old → New)</option>
+                        <option value="desc">Descending (New → Old)</option>
+                        <option value="asc">Ascending (Old → New)</option>
                     </select>
                 </div>
                 <input type="submit" class="mt-1 btn btn-primary" value="Filter" />
