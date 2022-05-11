@@ -139,6 +139,11 @@ if (isset($_REQUEST["account_id"]))
     }
     */
 }
+
+function loanBalance($balance)
+{
+    echo((int)$balance*-1);
+}
 ?>
 <div class="container-fluid col-xl-10 offset-xl-1">
     <h1><span>My Accounts</span></h1>
@@ -160,7 +165,11 @@ if (isset($_REQUEST["account_id"]))
                     <tr>
                         <td><?php se($account, "account_number"); ?></td>
                         <td><?php se($account, "account_type"); ?></td>
-                        <td><?php se($account, "balance"); ?></td>
+                        <?php if(se($account, "account_type", "", false) == "loan") : ?>
+                            <td><?php loanBalance(se($account, "balance", "", false)); ?></td>
+                        <?php else : ?>
+                            <td><?php se($account, "balance"); ?></td>
+                        <?php endif; ?>
                         <td><?php se($account, "modified"); ?></td>
                         <td>
                             <form method="POST" action="?account_id=<?php se($account, 'id');?>">
@@ -202,7 +211,11 @@ if (isset($_REQUEST["account_id"]))
                 <?php if (se($_POST, 'apy',"", false) > 0) : ?>
                     <td><?php se($_POST, "apy"); ?></td>
                 <?php endif; ?>
-                <td><?php se($_POST, "balance"); ?></td>
+                <?php if(se($_POST, "type", "", false) == "loan") : ?>
+                    <td><?php loanBalance(se($_POST, "balance","", false)); ?>
+                <?php else : ?>
+                    <td><?php se($_POST, "balance"); ?></td>
+                <?php endif; ?>
                 <td><?php se($_POST, "created"); ?></td>
             </tr>
         </table>
