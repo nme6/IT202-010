@@ -32,4 +32,16 @@ require(__DIR__ . "/get_user_account_id.php");
 // Balance the change (transaction)
 // Passed as a positive value, coming from account_src, going to account_dest
 require(__DIR__ . "/balance_change.php");
+
+// Pagination php codes
+// Paginate.php
+require(__DIR__ . "/paginate.php");
+// persistQueryString (updates or inserts page into query)
+require(__DIR__ . "/persistQueryString.php");
+
+// Profile First Name and Last Name Check
+// First Name
+require(__DIR__ . "/get_user_firstname.php");
+// Last Name
+require(__DIR__ . "/get_user_lastname.php");
 ?>
