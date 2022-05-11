@@ -94,7 +94,7 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
         //flash("Welcome, $email");
         //TODO 4
         $db = getDB();
-        $stmt = $db->prepare("SELECT id, email, username, password from Users 
+        $stmt = $db->prepare("SELECT id, email, username, password, firstname, lastname from Users 
         where email = :email or username = :email");
         try {
             $r = $stmt->execute([":email" => $email]);
@@ -118,7 +118,18 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
                         } else {
                             $_SESSION["user"]["roles"] = []; //no roles
                         }
-                        flash("Welcome, " . get_username());
+                        if (get_user_firstname() == "" && get_user_lastname() == "") {
+                            flash("Welcome, " . get_username());
+                        }
+                        else if (get_user_firstname() != "" && get_user_lastname() == "") {
+                            flash("Welcome, " . get_username() . " (" . get_user_firstname() . ")");
+                        }
+                        else if (get_user_firstname() == ""  && get_user_lastname() != "") {
+                            flash("Welcome, " . get_username() . " (" . get_user_lastname() . ")");
+                        }
+                        else {
+                            flash("Welcome, " . get_username() . " (" . get_user_firstname() . " " . get_user_lastname() . ")" );
+                        }
                         die(header("Location: home.php"));
                     } else {
                         flash("Invalid password", "danger");

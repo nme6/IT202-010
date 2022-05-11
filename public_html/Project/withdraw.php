@@ -1,9 +1,9 @@
 <?php
-require(__DIR__ . "/../../partials/nav.php");
+    require(__DIR__ . "/../../partials/nav.php");
 
-if (!is_logged_in()) {
-    die(header("Location: " . get_url("home.php")));
-}
+    if (!is_logged_in()) {
+        die(header("Location: " . get_url("home.php")));
+    }
 
     $uid = get_user_id();
     $query = "SELECT account_number, account_type, balance, created, id from Accounts ";
@@ -55,10 +55,10 @@ if (!is_logged_in()) {
         }
     }
     else
-        flash("Account Not Selected", "warning");
+        flash("No account has been selected", "warning");
 ?>
 <div class="container-fluid col-lg-4 offset-lg-4">
-    <h1 style="padding-top: 10px">Withdraw</h1>
+    <h1><span>Withdraw</span></h1>
     <div>
         <form method="POST">
             <div class="mb-3">
@@ -71,6 +71,7 @@ if (!is_logged_in()) {
                         </option>
                     <?php endforeach; ?>
                 <?php endif; ?> 
+                </select>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="d">Amount to Withdraw</label>
