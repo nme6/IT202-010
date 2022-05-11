@@ -89,7 +89,6 @@
 ?>
 <div class="container-fluid col-lg-4 offset-lg-4">
     <h1><span>Loans</span></h1>
-    <h2>Take Out A Loan</h2>
     <form method="POST">
         <div class="mb-3">
             <label for="destList" class="form-label">Account Destination</label>
