@@ -163,7 +163,6 @@
     -  [http://nme6-prod.herokuapp.com/Project/external_transfer.php](http://nme6-prod.herokuapp.com/Project/external_transfer.php)
 - Milestone 4
   - (duplicate template here for Milestone 1 features)
-  - 
 ### Intructions
 #### Don't delete this
 1. Pick one project type
