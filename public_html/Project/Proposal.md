@@ -187,7 +187,7 @@
         * Recommended to create a table for “**system properties**” and have this value stored there and fetched when needed, this will allow you to have an admin account change the value in the future)
     * Form will have a dropdown of the user’s accounts of which to deposit the money into
     * **Special Case for Loans:**
-        * Loans will show with a positive balance of what’s required to pay off (although it is a negative value in the database since the user owes it)
+        * Loans will show with a positive balance of what’s required to pay them off (although it is a negative value in the database since the user owes it)
         * User will transfer funds to the loan account to pay it off
         * Transfers will continue to be recorded in the Transactions table per normal rules
         * Loan account’s balance will be the balance minus any transfers **to** this account
