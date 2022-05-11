@@ -223,6 +223,7 @@ if (isset($_REQUEST["account_id"]))
                         <option value="deposit">Deposit</option>
                         <option value="withdraw">Withdraw</option>
                         <option value="transfer">Transfer</option>
+                        <option value="ext-transfer">External Transfer</option>
                     </select>
                     <span class="input-group-text" id="sort">Sort</span>
                     <select class="form-control" name="sort" aria-label="sort" aria-describedby="sort">
