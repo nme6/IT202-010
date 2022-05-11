@@ -135,7 +135,7 @@
     * Show user-friendly success messages
     -  [Milestone 3](https://github.com/nme6/IT202-010/blob/Milestone3/public_html/Project/milestone3.md)
     -  [http://nme6-prod.herokuapp.com/Project/transfer.php](http://nme6-prod.herokuapp.com/Project/transfer.php)
-  - [x] \(05/09/2022) Transaction History page
+  - [x] \(05/10/2022) Transaction History page
     * Will show the latest 10 transactions by default
     * User will be able to filter transactions between two dates
     * User will be able to filter transactions by type (deposit, withdraw, transfer)
