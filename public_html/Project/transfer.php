@@ -36,6 +36,7 @@
         $transfer = (int)se($_POST, "transfer", "", false);
         $src = (int)se($_POST, "src_id", "", false);
         $dest = (int)se($_POST, "dest_id", "", false);
+        $dest_type = get_account_type($dest);
         $memo = $_POST["memo"];
         //$balance = get_account_balance($src);
         //flash("balance = $balance");
@@ -53,11 +54,32 @@
         }
         else
         {
-            balance_change($transfer, "transfer", $src, $src, $dest, $memo);
-            refresh_account_balance($src);
-            refresh_account_balance($dest);
-            flash("Transfer was successful", "success");
-            die(header("Location: " . get_url("my_accounts.php")));
+            if($dest_type == 'loan')
+            {
+                $owed = get_account_balance($dest)*-1;
+                if ($owed < $transfer)
+                {
+                    flash("You only have $owe more to pay off your loan", "warning");
+                }
+                else 
+                {
+                    balance_change($transfer, "transfer", $src, $src, $dest, $memo);
+                    refresh_account_balance($src);
+                    refresh_account_balance($dest);
+                    flash("Transfer was successful", "success");
+                    if (get_account_balance($dest) == 0)
+                    { flash("Congratulations! You've paid off your loan!!!", "success");}
+                    die(header("Location: " . get_url("my_accounts.php")));
+                }
+            }
+            else
+            {
+                balance_change($transfer, "transfer", $src, $src, $dest, $memo);
+                refresh_account_balance($src);
+                refresh_account_balance($dest);
+                flash("Transfer was successful", "success");
+                die(header("Location: " . get_url("my_accounts.php")));
+            }
         }
     }
     else
@@ -71,9 +93,11 @@
             <select class="form-select" name="src_id" id="sourceList" autocomplete="off">
                 <?php if (!empty($accounts)) : ?>
                     <?php foreach ($accounts as $account) : ?>
-                        <option value="<?php se($account, 'id'); ?>">
-                            <?php se($account, "account_number"); ?> (Type: <?php se($account, 'account_type'); ?>; Balance = $<?php se($account, "balance"); ?>)
-                        </option>
+                        <?php if(se($account, "account_type", "", false) != 'loan') : ?>
+                            <option value="<?php se($account, 'id'); ?>">
+                                <?php se($account, "account_number"); ?> (Type: <?php se($account, 'account_type'); ?>; Balance = $<?php se($account, "balance"); ?>)
+                            </option>
+                            <?php endif; ?> 
                     <?php endforeach; ?>
                 <?php endif; ?> 
             </select>

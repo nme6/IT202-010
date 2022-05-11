@@ -47,4 +47,6 @@ require(__DIR__ . "/get_user_lastname.php");
 
 // get APY function
 require(__DIR__ . "/getAPY.php");
+// get account_type
+require(__DIR__ . "/get_account_type.php");
 ?>
