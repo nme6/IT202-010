@@ -124,7 +124,7 @@
     -  [http://nme6-prod.herokuapp.com/Project/deposit.php](http://nme6-prod.herokuapp.com/Project/deposit.php)
     -  [http://nme6-prod.herokuapp.com/Project/withdraw.php](http://nme6-prod.herokuapp.com/Project/withdraw.php)
 - Milestone 3
-  - [ ] \(mm/dd/yyyy of completion) User will be able to transfer between their accounts
+  - [x] \(05/05/2022) User will be able to transfer between their accounts
     * Form should include a dropdown first **account_src** and a dropdown for **account_dest** (only accounts the user owns; no world account)
     * Form should include a field for a positive numeric value
     * System shouldn’t allow the user to transfer more funds than what’s available in **account_src**
@@ -134,15 +134,19 @@
     * Show appropriate user-friendly error messages
     * Show user-friendly success messages
     -  [Milestone 3](https://github.com/nme6/IT202-010/blob/Milestone3/public_html/Project/milestone3.md)
-  - [ ] \(mm/dd/yyyy of completion) Transaction History page
+    -  [http://nme6-prod.herokuapp.com/Project/transfer.php](http://nme6-prod.herokuapp.com/Project/transfer.php)
+  - [x] \(05/09/2022) Transaction History page
     * Will show the latest 10 transactions by default
     * User will be able to filter transactions between two dates
     * User will be able to filter transactions by type (deposit, withdraw, transfer)
     * Transactions should paginate results after the initial 10
     -  [Milestone 3](https://github.com/nme6/IT202-010/blob/Milestone3/public_html/Project/milestone3.md)
-  - [ ] \(mm/dd/yyyy of completion) User’s profile page should record/show First and Last name
+    -  [http://nme6-prod.herokuapp.com/Project/my_accounts.php](http://nme6-prod.herokuapp.com/Project/my_accounts.php)
+  - [x] \(05/09/2022) User’s profile page should record/show First and Last name
     -  [Milestone 3](https://github.com/nme6/IT202-010/blob/Milestone3/public_html/Project/milestone3.md)
-  - [ ] \(mm/dd/yyyy of completion) User will be able to transfer funds to another user’s account
+    -  [http://nme6-prod.herokuapp.com/Project/register.php](http://nme6-prod.herokuapp.com/Project/register.php)
+    -  [http://nme6-prod.herokuapp.com/Project/profile.php](http://nme6-prod.herokuapp.com/Project/profile.php)
+  - [x] \(05/10/2022) User will be able to transfer funds to another user’s account
     * Form should include a dropdown of the current user’s accounts (as **account_src**)
     * Form should include a field for the destination user’s last name
     * Form should include a field for the last 4 digits of the destination user’s account number (to lookup AccountDest)
@@ -156,6 +160,7 @@
     * Each transaction is recorded as a transaction pair in the Transaction table
       * These will reflect in the transaction history page
     -  [Milestone 3](https://github.com/nme6/IT202-010/blob/Milestone3/public_html/Project/milestone3.md)
+    -  [http://nme6-prod.herokuapp.com/Project/external_transfer.php](http://nme6-prod.herokuapp.com/Project/external_transfer.php)
 - Milestone 4
   - (duplicate template here for Milestone 1 features)
   - 
