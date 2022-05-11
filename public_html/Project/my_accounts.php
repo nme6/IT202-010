@@ -6,7 +6,7 @@ if (!is_logged_in()) {
 }
 
 $uid = get_user_id();
-$query = "SELECT account_number, account_type, balance, created, modified, id from Accounts ";
+$query = "SELECT account_number, account_type, balance, created, modified, apy, id from Accounts ";
 $params = null;
 
 $query .= " WHERE user_id = :uid";
@@ -169,6 +169,7 @@ if (isset($_REQUEST["account_id"]))
                                 <input type="hidden" name="account_type" value="<?php se($account, 'account_type'); ?>" />
                                 <input type="hidden" name="balance" value="<?php se($account, 'balance'); ?>" />
                                 <input type="hidden" name="created" value="<?php se($account, 'created'); ?>" />
+                                <input type="hidden" name="apy" value="<?php se($account, 'apy'); ?>" />
                                 <div class="text-center"><input type="submit" class="btn btn-primary" style="padding: 1px 5px 1px; margin: 10px 0 -2.5px 0" value="More Info" /></div>
                             </form>
                         </td>
@@ -189,12 +190,18 @@ if (isset($_REQUEST["account_id"]))
             <thead>
                 <th>Account Number</th>
                 <th>Account Type</th>
+                <?php if (se($_POST, 'apy',"", false) > 0) : ?>
+                    <th>APY</th>
+                <?php endif; ?>
                 <th>Balance</th>
                 <th>Opened</th>
             </thead>
             <tr>
                 <td><?php se($_POST, "account_number"); ?></td>
                 <td><?php se($_POST, "account_type"); ?></td>
+                <?php if (se($_POST, 'apy',"", false) > 0) : ?>
+                    <td><?php se($_POST, "apy"); ?></td>
+                <?php endif; ?>
                 <td><?php se($_POST, "balance"); ?></td>
                 <td><?php se($_POST, "created"); ?></td>
             </tr>

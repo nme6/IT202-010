@@ -44,4 +44,7 @@ require(__DIR__ . "/persistQueryString.php");
 require(__DIR__ . "/get_user_firstname.php");
 // Last Name
 require(__DIR__ . "/get_user_lastname.php");
+
+// get APY function
+require(__DIR__ . "/getAPY.php");
 ?>
