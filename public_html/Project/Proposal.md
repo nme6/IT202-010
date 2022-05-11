@@ -10,7 +10,7 @@
 
 
 - [ ] \(mm/dd/yyyy of completion) Feature Title (from the proposal bullet point, if it's a sub-point indent it properly)
-  -  [Milestone 3](https://github.com/nme6/IT202-010/blob/Milestone3/public_html/Project/milestone3.md)
+  -  [Milestone 4](https://github.com/nme6/IT202-010/blob/Milestone4/public_html/Project/milestone4.md)
 
  End Line item / Feature Template -- DO NOT DELETE THIS SECTION -->
  
@@ -163,6 +163,7 @@
     -  [http://nme6-prod.herokuapp.com/Project/external_transfer.php](http://nme6-prod.herokuapp.com/Project/external_transfer.php)
 - Milestone 4
   - (duplicate template here for Milestone 1 features)
+  - 
 ### Intructions
 #### Don't delete this
 1. Pick one project type
