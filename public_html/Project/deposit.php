@@ -6,7 +6,7 @@
     }
 
     $uid = get_user_id();
-    $query = "SELECT account_number, account_type, balance, created, id, active from Accounts ";
+    $query = "SELECT account_number, account_type, balance, created, id, is_active from Accounts ";
     $params = null;
 
     /*

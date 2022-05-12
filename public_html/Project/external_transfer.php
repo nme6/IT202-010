@@ -11,7 +11,7 @@
     $lastfour = se($_POST, "lastfour", "", false);
 
     $uid = get_user_id();
-    $query = "SELECT account_number, account_type, balance, created, id, active from Accounts ";
+    $query = "SELECT account_number, account_type, balance, created, id, is_active from Accounts ";
     $params = null;
 
     /*
@@ -86,7 +86,7 @@
 
     function get_dest_id($lastname, $lastfour)
     {
-        $q = "SELECT Accounts.id, Accounts.account_number, Accounts.user_id, Users.lastname FROM Accounts INNER JOIN Users ON Accounts.user_id = Users.id WHERE Accounts.active = 1 AND Users.lastname LIKE :lastname AND Accounts.account_number LIKE :an ";
+        $q = "SELECT Accounts.id, Accounts.account_number, Accounts.user_id, Users.lastname FROM Accounts INNER JOIN Users ON Accounts.user_id = Users.id WHERE Accounts.is_active = 1 AND Users.lastname LIKE :lastname AND Accounts.account_number LIKE :an ";
         $p = ["lastname" => $lastname, "an" => "%$lastfour"];
 
         $db = getDB();

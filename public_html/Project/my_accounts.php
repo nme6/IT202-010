@@ -156,7 +156,7 @@ function loanBalance($balance)
 if(isset($_POST['close']) && isset($_POST['close_aid']))
 {
     $c_aid = (int)se($_POST, "close_aid", "", false);
-    $q = "UPDATE Accounts set active = 0 where id = :c_aid";
+    $q = "UPDATE Accounts set is_active = 0 where id = :c_aid";
     $db = getDB();
     $stmt = $db->prepare($q);
     try {

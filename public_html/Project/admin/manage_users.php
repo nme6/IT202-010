@@ -17,7 +17,7 @@
         $lastname = se($_POST, "lastname", "", false);
 
         // Query building
-        $query = "SELECT id, firstname, lastname, username, email from Users WHERE active = 1";
+        $query = "SELECT id, firstname, lastname, username, email from Users WHERE is_active = 1";
 
         if ($firstname) 
         {
@@ -110,7 +110,7 @@
     if(isset($_POST['deactivate']) && isset($_POST['de_uid']))
     {
         $uid = (int)se($_POST, "de_uid", "", false);
-        $q = "UPDATE Users set active = 0 where id = :de_uid";
+        $q = "UPDATE Users set is_active = 0 where id = :de_uid";
         $db = getDB();
         $stmt = $db->prepare($q);
         try {
