@@ -4,7 +4,7 @@ function get_account_type($aid)
     $query = "SELECT account_type, id from Accounts ";
     $params = null;
 
-    $query .= " WHERE id = :aid";
+    $query .= " WHERE id = :aid AND active = 1";
     $params =  [":aid" => "$aid"];
 
     $query .= " ORDER BY created desc";
