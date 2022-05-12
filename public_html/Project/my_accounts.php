@@ -9,7 +9,11 @@ $uid = get_user_id();
 $query = "SELECT account_number, account_type, balance, created, modified, apy, id, frozen from Accounts ";
 $params = null;
 
-$query .= " WHERE user_id = :uid AND active = 1";
+/*
+    Neil Evans (nme6)
+    May 12th, 2022
+*/
+$query .= " WHERE user_id = :uid AND is_active = 1";
 $params =  [":uid" => "$uid"];
 
 $query .= " ORDER BY created desc";
@@ -212,6 +216,7 @@ if(isset($_POST['close']) && isset($_POST['close_aid']))
                                 <?php endif; ?>                            
                             </form>
                         </td>
+                        <!-- Neil Evans (nme6), May 12th, 2022 -->
                         <?php if((int)se($account, "balance", "", false) == 0) : ?>
                             <td>
                             <form method="POST" onsubmit="return confirm('Are you sure you want to close this account?');">

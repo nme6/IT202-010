@@ -4,7 +4,11 @@ function get_account_type($aid)
     $query = "SELECT account_type, id from Accounts ";
     $params = null;
 
-    $query .= " WHERE id = :aid AND active = 1";
+    /*
+    Neil Evans (nme6)
+    May 12th, 2022
+    */
+    $query .= " WHERE id = :aid AND is_active = 1";
     $params =  [":aid" => "$aid"];
 
     $query .= " ORDER BY created desc";

@@ -18,7 +18,7 @@
     Neil Evans (nme6)
     May 12th, 2022
     */
-    $query .= " WHERE user_id = :uid AND active = 1 AND NOT account_type = :loan";
+    $query .= " WHERE user_id = :uid AND is_active = 1 AND NOT account_type = :loan";
     $params =  [":uid" => "$uid", ":loan" => "loan"];
 
     $query .= " ORDER BY created desc";

@@ -19,7 +19,7 @@
         $an = se($_POST, "an", "", false);
 
         // Query building
-        $query = "SELECT Accounts.id, Accounts.account_number, Accounts.account_type, Accounts.created, Accounts.balance, Accounts.apy, Accounts.frozen, Users.firstname, Users.lastname FROM Accounts INNER JOIN Users ON Accounts.user_id = Users.id WHERE Accounts.active = 1";
+        $query = "SELECT Accounts.id, Accounts.account_number, Accounts.account_type, Accounts.created, Accounts.balance, Accounts.apy, Accounts.frozen, Users.firstname, Users.lastname FROM Accounts INNER JOIN Users ON Accounts.user_id = Users.id WHERE Accounts.is_active = 1";
         
         if ($firstname) 
         {
