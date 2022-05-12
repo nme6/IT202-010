@@ -6,13 +6,13 @@ if (!is_logged_in()) {
 }
 
 $uid = get_user_id();
-$query = "SELECT account_number, account_type, balance, created, modified, apy, id from Accounts ";
+$query = "SELECT account_number, account_type, balance, created, modified, apy, id, frozen from Accounts ";
 $params = null;
 
 $query .= " WHERE user_id = :uid AND active = 1";
 $params =  [":uid" => "$uid"];
 
-$query .= " ORDER BY created desc LIMIT 5";
+$query .= " ORDER BY created desc";
 $db = getDB();
 $stmt = $db->prepare($query);
 $accounts = [];
@@ -69,7 +69,7 @@ if (isset($_REQUEST["account_id"]))
         $query .= " AND transaction_type = :type ";
         $params[":type"] = "$type";
     }
-    //apply column and order sort
+    // Apply column and order sort
     if (!empty($orderby))
     {
         $query .= " ORDER BY created $orderby ";
@@ -200,7 +200,12 @@ if(isset($_POST['close']) && isset($_POST['close_aid']))
                                 <input type="hidden" name="balance" value="<?php se($account, 'balance'); ?>" />
                                 <input type="hidden" name="created" value="<?php se($account, 'created'); ?>" />
                                 <input type="hidden" name="apy" value="<?php se($account, 'apy'); ?>" />
-                                <div class="text-center"><input type="submit" class="btn btn-primary" style="padding: 1px 5px 1px; margin: 10px 0 -2.5px 0" value="More Info" /></div>
+                                <input type="hidden" name="frozen" value="<?php se($account, 'frozen'); ?>" />
+                                <?php if ((int)se($account, 'frozen', "", false) == 1) : ?>
+                                    FROZEN
+                                <?php else : ?>
+                                    <div class="text-center"><input type="submit" class="btn btn-primary" style="padding: 1px 5px 1px; margin: 10px 0 -2.5px 0" value="More Info" /></div>
+                                <?php endif; ?>                            
                             </form>
                         </td>
                         <?php if((int)se($account, "balance", "", false) == 0) : ?>

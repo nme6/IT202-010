@@ -59,9 +59,9 @@ else
 <div class="container-fluid col-lg-4 offset-lg-4">
     <h1><span>Create Account</span></h1>
     <form method="POST">
-        <div class="form-check">
+        <div class="form-check mb-3" style="margin-left: -4%;">
             <label for="sourceList" class="form-label">Account Type</label>
-            <select>
+            <select class="form-select" name="acct_type" id="accountTypes" autocomplete="off">
                 <option value="checkings">Checkings</option>
                 <option value="savings">Savings</option>
             </select>

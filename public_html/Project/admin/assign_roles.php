@@ -78,25 +78,20 @@ if (isset($_POST["username"])) {
         <?php if (isset($username) && !empty($username)) : ?>
             <input type="hidden" name="username" value="<?php se($username, false); ?>" />
         <?php endif; ?>
-        <table>
+        <table class="table table-bordered">
             <thead>
                 <th>Users</th>
+                <th>Roles</th>
                 <th>Roles to Assign</th>
             </thead>
             <tbody>
                 <tr>
                     <td>
-                        <table>
-                            <?php foreach ($users as $user) : ?>
-                                <tr>
-                                    <td>
-                                        <label class="form-label" for="user_<?php se($user, 'id'); ?>"><?php se($user, "username"); ?></label>
-                                        <input class="form-check-input" id="user_<?php se($user, 'id'); ?>" type="checkbox" name="users[]" value="<?php se($user, 'id'); ?>" />
-                                    </td>
-                                    <td><?php se($user, "roles", "No Roles"); ?></td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </table>
+                        <?php foreach ($users as $user) : ?>
+                            <label class="form-label" for="user_<?php se($user, 'id'); ?>"><?php se($user, "username"); ?></label>
+                            <input class="form-check-input" id="user_<?php se($user, 'id'); ?>" type="checkbox" name="users[]" value="<?php se($user, 'id'); ?>" />
+                        <?php endforeach; ?>
+                    <td><?php se($user, "roles", "No Roles"); ?></td>
                     </td>
                     <td>
                         <?php foreach ($active_roles as $role) : ?>
