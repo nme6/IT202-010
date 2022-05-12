@@ -4,7 +4,7 @@ function get_account_balance($aid)
     $query = "SELECT balance, id from Accounts ";
     $params = null;
 
-    $query .= " WHERE id = :aid";
+    $query .= " WHERE id = :aid AND active = 1";
     $params =  [":aid" => "$aid"];
 
     $query .= " ORDER BY created desc";
