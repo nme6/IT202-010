@@ -1,4 +1,8 @@
 <?php
+/*
+Neil Evans (nme6)
+May 12th, 2022
+*/
 function getAPY($apy_type)
 {
     $q = "SELECT apy_type, apy FROM System_Properties WHERE apy_type = :apy_type";

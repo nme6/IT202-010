@@ -14,6 +14,10 @@
     $query = "SELECT account_number, account_type, balance, created, id, active from Accounts ";
     $params = null;
 
+    /*
+    Neil Evans (nme6)
+    May 12th, 2022
+    */
     $query .= " WHERE user_id = :uid AND active = 1 AND NOT account_type = :loan";
     $params =  [":uid" => "$uid", ":loan" => "loan"];
 

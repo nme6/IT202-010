@@ -140,6 +140,10 @@ if (isset($_REQUEST["account_id"]))
     */
 }
 
+/*
+Neil Evans (nme6)
+May 12th, 2022
+*/
 function loanBalance($balance)
 {
     echo((int)$balance*-1);

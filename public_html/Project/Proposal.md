@@ -2,7 +2,7 @@
 ## Project Summary: This project will create a bank simulation for users. They’ll be able to have various accounts, do standard bank functions like deposit, withdraw, internal (user’s accounts)/external(other user’s accounts) transfers, and creating/closing accounts.
 
 ## Github Link: [https://github.com/nme6/IT202-010/tree/prod/public_html/Project](https://github.com/nme6/IT202-010/tree/prod/public_html/Project)
-## Project Board Link: 
+## Project Board Link: [https://github.com/nme6/IT202-010/projects/1](https://github.com/nme6/IT202-010/projects/1)
 ## Website Link: [https://nme6-prod.herokuapp.com/Project/](https://nme6-prod.herokuapp.com/Project/)
 ## Your Name: Neil Evans
 
@@ -162,10 +162,11 @@
     -  [Milestone 3](https://github.com/nme6/IT202-010/blob/Milestone3/public_html/Project/milestone3.md)
     -  [http://nme6-prod.herokuapp.com/Project/external_transfer.php](http://nme6-prod.herokuapp.com/Project/external_transfer.php)
 - Milestone 4
-  - [ ] \(mm/dd/yyyy of completion) User can set their profile to be public or private (will need another column in Users table)
+  - [x] \(05/11/2022) User can set their profile to be public or private (will need another column in Users table)
     * If profile is public, hide email address from **other** users (email address should not be publicly visible to others)
     -  [Milestone 4](https://github.com/nme6/IT202-010/blob/Milestone4/public_html/Project/milestone4.md)
-  - [ ] \(mm/dd/yyyy of completion) User will be able open a savings account
+    -  [http://nme6-prod.herokuapp.com/Project/profile.php](http://nme6-prod.herokuapp.com/Project/profile.php)
+  - [x] \(05/11/2022) User will be able open a savings account
     * System will generate a 12 digit/character account number per the existing rules (see Checking Account above)
     * System will associate the account to the user
     * Account type will be set as savings
@@ -178,7 +179,8 @@
     * User will see user-friendly success message when account is created successfully
         * Redirect user to their Accounts page
     -  [Milestone 4](https://github.com/nme6/IT202-010/blob/Milestone4/public_html/Project/milestone4.md)
-  - [ ] \(mm/dd/yyyy of completion) User will be able to take out a loan
+    -  [http://nme6-prod.herokuapp.com/Project/create_account.php](http://nme6-prod.herokuapp.com/Project/create_account.php)
+  - [x] \(05/11/2022) User will be able to take out a loan
     * System will generate a 12 digit/character account number per the existing rules (see Checking Account above)
     * Account type will be set as loan
     * Will require a minimum value of $500
@@ -198,9 +200,11 @@
     * User will see user-friendly success message when account is created successfully
         * Redirect user to their Accounts page
     -  [Milestone 4](https://github.com/nme6/IT202-010/blob/Milestone4/public_html/Project/milestone4.md)
-  - [ ] \(mm/dd/yyyy of completion) Listing accounts and/or viewing Account Details should show any applicable APY or “-” if none is set for the particular account
+    -  [http://nme6-prod.herokuapp.com/Project/loans.php](http://nme6-prod.herokuapp.com/Project/loans.php)
+  - [x] \(05/11/2022) Listing accounts and/or viewing Account Details should show any applicable APY or “-” if none is set for the particular account
     -  [Milestone 4](https://github.com/nme6/IT202-010/blob/Milestone4/public_html/Project/milestone4.md)
-  - [ ] \(mm/dd/yyyy of completion) User will be able to close an account
+    -  [http://nme6-prod.herokuapp.com/Project/my_accounts.php](http://nme6-prod.herokuapp.com/Project/my_accounts.php)
+  - [x] \(05/11/2022 ) User will be able to close an account
     * User must transfer or withdraw all funds out of the account before doing so (i.e., balance must be 0)
     * Account should have a column “is_active” that will get set as false (the default value should be true).
         * **All** queries for Accounts should be updated to pull only “active” = true accounts (i.e., dropdowns, My Accounts, etc)
@@ -208,7 +212,8 @@
     * Closed accounts should not be visible to the user anymore
     * If the account is a loan, it must be paid off in full first
     -  [Milestone 4](https://github.com/nme6/IT202-010/blob/Milestone4/public_html/Project/milestone4.md)
-  - [ ] \(mm/dd/yyyy of completion) Admin role (leave this section for last)
+    -  [http://nme6-prod.herokuapp.com/Project/my_accounts.php](http://nme6-prod.herokuapp.com/Project/my_accounts.php)
+  - [x] \(05/12/2022) Admin role (leave this section for last)
     * Will be able to search for users by firstname and/or lastname
         * List will show  the following
             * The user’s first name, last name
@@ -227,6 +232,8 @@
             * **[Dev note]**: Will want to add a column to Accounts table called frozen and default it to false
                 * Update transactions logic to not allow frozen accounts to be used for a transaction
     -  [Milestone 4](https://github.com/nme6/IT202-010/blob/Milestone4/public_html/Project/milestone4.md)
+    -  [http://nme6-prod.herokuapp.com/Project/admin/manage_users.php](http://nme6-prod.herokuapp.com/Project/admin/manage_users.php)
+    -  [http://nme6-prod.herokuapp.com/Project/admin/view_accounts.php](http://nme6-prod.herokuapp.com/Project/admin/view_accounts.php)
 ### Intructions
 #### Don't delete this
 1. Pick one project type
