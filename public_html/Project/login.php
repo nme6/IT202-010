@@ -94,7 +94,7 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
         //flash("Welcome, $email");
         //TODO 4
         $db = getDB();
-        $stmt = $db->prepare("SELECT id, email, username, password, firstname, lastname from Users 
+        $stmt = $db->prepare("SELECT id, email, username, password, firstname, lastname, visibility, is_active from Users 
         where email = :email or username = :email");
         try {
             $r = $stmt->execute([":email" => $email]);
@@ -104,33 +104,38 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
                     $hash = $user["password"];
                     unset($user["password"]);
                     if (password_verify($password, $hash)) {
-                        //flash("Weclome $email");
-                        $_SESSION["user"] = $user; //sets our session data from db
-                        //lookup potential roles
-                        $stmt = $db->prepare("SELECT Roles.name FROM Roles 
-                        JOIN UserRoles on Roles.id = UserRoles.role_id 
-                        where UserRoles.user_id = :user_id and Roles.is_active = 1 and UserRoles.is_active = 1");
-                        $stmt->execute([":user_id" => $user["id"]]);
-                        $roles = $stmt->fetchAll(PDO::FETCH_ASSOC); //fetch all since we'll want multiple
-                        //save roles or empty array
-                        if ($roles) {
-                            $_SESSION["user"]["roles"] = $roles; //at least 1 role
-                        } else {
-                            $_SESSION["user"]["roles"] = []; //no roles
-                        }
-                        if (get_user_firstname() == "" && get_user_lastname() == "") {
-                            flash("Welcome, " . get_username());
-                        }
-                        else if (get_user_firstname() != "" && get_user_lastname() == "") {
-                            flash("Welcome, " . get_username() . " (" . get_user_firstname() . ")");
-                        }
-                        else if (get_user_firstname() == ""  && get_user_lastname() != "") {
-                            flash("Welcome, " . get_username() . " (" . get_user_lastname() . ")");
+                        if($user["is_active"] == 0) {
+                            flash("Sorry your account is no longer active", "danger");
                         }
                         else {
-                            flash("Welcome, " . get_username() . " (" . get_user_firstname() . " " . get_user_lastname() . ")" );
+                            //flash("Weclome $email");
+                            $_SESSION["user"] = $user; //sets our session data from db
+                            //lookup potential roles
+                            $stmt = $db->prepare("SELECT Roles.name FROM Roles 
+                            JOIN UserRoles on Roles.id = UserRoles.role_id 
+                            where UserRoles.user_id = :user_id and Roles.is_active = 1 and UserRoles.is_active = 1");
+                            $stmt->execute([":user_id" => $user["id"]]);
+                            $roles = $stmt->fetchAll(PDO::FETCH_ASSOC); //fetch all since we'll want multiple
+                            //save roles or empty array
+                            if ($roles) {
+                                $_SESSION["user"]["roles"] = $roles; //at least 1 role
+                            } else {
+                                $_SESSION["user"]["roles"] = []; //no roles
+                            }
+                            if (get_user_firstname() == "" && get_user_lastname() == "") {
+                                flash("Welcome, " . get_username());
+                            }
+                            else if (get_user_firstname() != "" && get_user_lastname() == "") {
+                                flash("Welcome, " . get_username() . " (" . get_user_firstname() . ")");
+                            }
+                            else if (get_user_firstname() == ""  && get_user_lastname() != "") {
+                                flash("Welcome, " . get_username() . " (" . get_user_lastname() . ")");
+                            }
+                            else {
+                                flash("Welcome, " . get_username() . " (" . get_user_firstname() . " " . get_user_lastname() . ")" );
+                            }
+                            die(header("Location: home.php"));
                         }
-                        die(header("Location: home.php"));
                     } else {
                         flash("Invalid password", "danger");
                     }

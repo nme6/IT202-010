@@ -6,13 +6,17 @@ if (!is_logged_in()) {
 }
 
 $uid = get_user_id();
-$query = "SELECT account_number, account_type, balance, created, modified, id from Accounts ";
+$query = "SELECT account_number, account_type, balance, created, modified, apy, id, frozen from Accounts ";
 $params = null;
 
-$query .= " WHERE user_id = :uid";
+/*
+    Neil Evans (nme6)
+    May 12th, 2022
+*/
+$query .= " WHERE user_id = :uid AND is_active = 1";
 $params =  [":uid" => "$uid"];
 
-$query .= " ORDER BY created desc LIMIT 5";
+$query .= " ORDER BY created desc";
 $db = getDB();
 $stmt = $db->prepare($query);
 $accounts = [];
@@ -69,7 +73,7 @@ if (isset($_REQUEST["account_id"]))
         $query .= " AND transaction_type = :type ";
         $params[":type"] = "$type";
     }
-    //apply column and order sort
+    // Apply column and order sort
     if (!empty($orderby))
     {
         $query .= " ORDER BY created $orderby ";
@@ -139,6 +143,31 @@ if (isset($_REQUEST["account_id"]))
     }
     */
 }
+
+/*
+Neil Evans (nme6)
+May 12th, 2022
+*/
+function loanBalance($balance)
+{
+    echo((int)$balance*-1);
+}
+
+if(isset($_POST['close']) && isset($_POST['close_aid']))
+{
+    $c_aid = (int)se($_POST, "close_aid", "", false);
+    $q = "UPDATE Accounts set is_active = 0 where id = :c_aid";
+    $db = getDB();
+    $stmt = $db->prepare($q);
+    try {
+        $stmt->execute([":c_aid" => $c_aid]);
+    } catch (PDOException $e) {
+        flash("Error closing account: " . var_export($e->errorInfo, true), "danger");
+    }
+
+    flash("Successfully closed account, you may refresh/navigate away from the page", "success");
+
+}
 ?>
 <div class="container-fluid col-xl-10 offset-xl-1">
     <h1><span>My Accounts</span></h1>
@@ -149,6 +178,11 @@ if (isset($_REQUEST["account_id"]))
             <th>Account Balance</th>
             <th>Modified</th>
             <th>More Info</th>
+            <?php foreach ($accounts as $account) : ?>
+                <?php if((int)se($account, "balance", "", false) == 0) : ?>
+                    <th>Close Account</th>
+                <?php endif; ?>
+            <?php endforeach; ?>
         </thead>
         <tbody>
             <?php if (empty($accounts)) : ?>
@@ -160,7 +194,11 @@ if (isset($_REQUEST["account_id"]))
                     <tr>
                         <td><?php se($account, "account_number"); ?></td>
                         <td><?php se($account, "account_type"); ?></td>
-                        <td><?php se($account, "balance"); ?></td>
+                        <?php if(se($account, "account_type", "", false) == "loan") : ?>
+                            <td><?php loanBalance(se($account, "balance", "", false)); ?></td>
+                        <?php else : ?>
+                            <td><?php se($account, "balance"); ?></td>
+                        <?php endif; ?>
                         <td><?php se($account, "modified"); ?></td>
                         <td>
                             <form method="POST" action="?account_id=<?php se($account, 'id');?>">
@@ -169,9 +207,24 @@ if (isset($_REQUEST["account_id"]))
                                 <input type="hidden" name="account_type" value="<?php se($account, 'account_type'); ?>" />
                                 <input type="hidden" name="balance" value="<?php se($account, 'balance'); ?>" />
                                 <input type="hidden" name="created" value="<?php se($account, 'created'); ?>" />
-                                <div class="text-center"><input type="submit" class="btn btn-primary" style="padding: 1px 5px 1px; margin: 10px 0 -2.5px 0" value="More Info" /></div>
+                                <input type="hidden" name="apy" value="<?php se($account, 'apy'); ?>" />
+                                <input type="hidden" name="frozen" value="<?php se($account, 'frozen'); ?>" />
+                                <?php if ((int)se($account, 'frozen', "", false) == 1) : ?>
+                                    FROZEN
+                                <?php else : ?>
+                                    <div class="text-center"><input type="submit" class="btn btn-primary" style="padding: 1px 5px 1px; margin: 10px 0 -2.5px 0" value="More Info" /></div>
+                                <?php endif; ?>                            
                             </form>
                         </td>
+                        <!-- Neil Evans (nme6), May 12th, 2022 -->
+                        <?php if((int)se($account, "balance", "", false) == 0) : ?>
+                            <td>
+                            <form method="POST" onsubmit="return confirm('Are you sure you want to close this account?');">
+                                <input type="hidden" name="close_aid" value="<?php se($account, 'id'); ?>" />
+                                <div class="text-center"><input type="submit" name="close" class="btn btn-primary" style="padding: 1px 5px 1px; margin: 10px 0 -2.5px 0" value="Close Account" /></div>
+                            </form>
+                            </td>
+                        <?php endif; ?>
                     </tr>
                 <?php endforeach; ?>
             <?php endif; ?>
@@ -189,13 +242,23 @@ if (isset($_REQUEST["account_id"]))
             <thead>
                 <th>Account Number</th>
                 <th>Account Type</th>
+                <?php if (se($_POST, 'apy',"", false) > 0) : ?>
+                    <th>APY</th>
+                <?php endif; ?>
                 <th>Balance</th>
                 <th>Opened</th>
             </thead>
             <tr>
                 <td><?php se($_POST, "account_number"); ?></td>
                 <td><?php se($_POST, "account_type"); ?></td>
-                <td><?php se($_POST, "balance"); ?></td>
+                <?php if (se($_POST, 'apy',"", false) > 0) : ?>
+                    <td><?php se($_POST, "apy"); ?></td>
+                <?php endif; ?>
+                <?php if(se($_POST, "type", "", false) == "loan") : ?>
+                    <td><?php loanBalance(se($_POST, "balance","", false)); ?>
+                <?php else : ?>
+                    <td><?php se($_POST, "balance"); ?></td>
+                <?php endif; ?>
                 <td><?php se($_POST, "created"); ?></td>
             </tr>
         </table>

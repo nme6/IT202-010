@@ -50,7 +50,7 @@ try {
         <input class="form-control" type="search" name="role" placeholder="Role Filter" />
         <input type="submit" class="mt-3 btn btn-primary" value="Search" />
     </form>
-    <table>
+    <table class="table table-bordered">
         <thead>
             <th style="padding: 15px">ID</th>
             <th style="padding: 15px">Name</th>
