@@ -17,7 +17,7 @@
         $lastname = se($_POST, "lastname", "", false);
 
         // Query building
-        $query = "SELECT id, firstname, lastname, username, email from Users WHERE active = 1";
+        $query = "SELECT id, firstname, lastname, username, email from Users WHERE is_active = 1";
 
         if ($firstname) 
         {

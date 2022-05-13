@@ -1,2 +1,2 @@
 ALTER TABLE Users
-ADD COLUMN active TINYINT(1) default 1;
+ADD COLUMN is_active TINYINT(1) default 1;
