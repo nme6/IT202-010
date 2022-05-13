@@ -91,7 +91,13 @@ if (isset($_POST["username"])) {
                             <label class="form-label" for="user_<?php se($user, 'id'); ?>"><?php se($user, "username"); ?></label>
                             <input class="form-check-input" id="user_<?php se($user, 'id'); ?>" type="checkbox" name="users[]" value="<?php se($user, 'id'); ?>" />
                         <?php endforeach; ?>
-                    <td><?php se($user, "roles", "No Roles"); ?></td>
+                    <td>
+                        <?php if (empty($user)) : ?>
+                            
+                        <?php else : ?>
+                            <?php se($user, "roles", "No Roles"); ?>
+                        <?php endif; ?>
+                    </td>
                     </td>
                     <td>
                         <?php foreach ($active_roles as $role) : ?>
