@@ -91,7 +91,7 @@
         $query = " WHERE 1=1"; // 1=1 shortcut to conditionally build AND clauses
         $params = []; // Define the default params, add keys as needed and pass to execute
         // Apply src filter
-        $query .= " AND src = :src_id ";
+        $query .= " AND account_src = :src_id ";
         $params =  [":src_id" => $src_id];
 
         //apply start-end date filter
