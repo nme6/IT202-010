@@ -111,7 +111,7 @@
 
         // Apply transction type filter
         if (!empty($type)) {
-            $query .= " AND transactionType = :type ";
+            $query .= " AND transaction_type = :type ";
             $params[":type"] = "$type";
         }
         // Apply column and order sort
