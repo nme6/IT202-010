@@ -11,11 +11,15 @@
     $lastfour = se($_POST, "lastfour", "", false);
 
     $uid = get_user_id();
-    $query = "SELECT account_number, account_type, balance, created, id from Accounts ";
+    $query = "SELECT account_number, account_type, balance, created, id, is_active from Accounts ";
     $params = null;
 
-    $query .= " WHERE user_id = :uid";
-    $params =  [":uid" => "$uid"];
+    /*
+    Neil Evans (nme6)
+    May 12th, 2022
+    */
+    $query .= " WHERE user_id = :uid AND is_active = 1 AND NOT account_type = :loan";
+    $params =  [":uid" => "$uid", ":loan" => "loan"];
 
     $query .= " ORDER BY created desc";
     $db = getDB();
@@ -82,7 +86,7 @@
 
     function get_dest_id($lastname, $lastfour)
     {
-        $q = "SELECT Accounts.id, Accounts.account_number, Accounts.user_id, Users.lastname FROM Accounts INNER JOIN Users ON Accounts.user_id = Users.id WHERE Users.lastname LIKE :lastname AND Accounts.account_number LIKE :an ";
+        $q = "SELECT Accounts.id, Accounts.account_number, Accounts.user_id, Users.lastname FROM Accounts INNER JOIN Users ON Accounts.user_id = Users.id WHERE Accounts.is_active = 1 AND Users.lastname LIKE :lastname AND Accounts.account_number LIKE :an ";
         $p = ["lastname" => $lastname, "an" => "%$lastfour"];
 
         $db = getDB();
@@ -145,5 +149,5 @@
     </form>
 </div>
 <?php
-    require_once(__DIR__ . "/../../partials/flash.php");
+require_once(__DIR__ . "/../../partials/flash.php");
 ?>

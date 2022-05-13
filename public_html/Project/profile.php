@@ -1,13 +1,21 @@
 <?php
 require_once(__DIR__ . "/../../partials/nav.php");
 is_logged_in(true);
+
+$user_id = se($_GET, "id", get_user_id(), false);
+$isMe = $user_id === get_user_id();
+// The !! makes the value into a true or false value regardless of the data
+$edit = !!se($_GET, "edit", false, false);
+
 ?>
 <?php
-if (isset($_POST["save"])) {
+if (isset($_POST["save"]) && $isMe && $edit) {
     $email = se($_POST, "email", null, false);
     $username = se($_POST, "username", null, false);
     $firstname = se($_POST, "firstname", null, false);
     $lastname = se($_POST, "lastname", null, false);
+    $visibility = !!se($_POST, "visibility", false, false) ? 1 : 0;
+
     $hasError = false;
     //sanitize
     $email = sanitize_email($email);
@@ -21,9 +29,9 @@ if (isset($_POST["save"])) {
         $hasError = true;
     }
     if (!$hasError) {
-        $params = [":email" => $email, ":username" => $username, "firstname" => $firstname, "lastname" => $lastname, ":id" => get_user_id()];
+        $params = [":email" => $email, ":username" => $username, "firstname" => $firstname, "lastname" => $lastname, ":visible" => $visibility, ":id" => get_user_id()];
         $db = getDB();
-        $stmt = $db->prepare("UPDATE Users set email = :email, username = :username, firstname = :firstname, lastname = :lastname where id = :id");
+        $stmt = $db->prepare("UPDATE Users set email = :email, username = :username, firstname = :firstname, lastname = :lastname, visibility = :visible where id = :id");
         try {
             $stmt->execute($params);
             flash("Profile saved", "success");
@@ -31,7 +39,7 @@ if (isset($_POST["save"])) {
             users_check_duplicate($e->errorInfo);
         }
         //select fresh data from table
-        $stmt = $db->prepare("SELECT id, email, username, firstname, lastname from Users where id = :id LIMIT 1");
+        $stmt = $db->prepare("SELECT id, email, username, firstname, lastname, visibility from Users where id = :id LIMIT 1");
         try {
             $stmt->execute([":id" => get_user_id()]);
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -41,6 +49,7 @@ if (isset($_POST["save"])) {
                 $_SESSION["user"]["username"] = $user["username"];
                 $_SESSION["user"]["firstname"] = $user["firstname"];
                 $_SESSION["user"]["lastname"] = $user["lastname"];
+                $_SESSION["user"]["visibility"] = $user["visibility"];
             } else {
                 flash("User doesn't exist", "danger");
             }
@@ -98,9 +107,37 @@ $email = get_user_email();
 $username = get_username();
 $firstname = get_user_firstname();
 $lastname = get_user_lastname();
+$visibility = get_user_visibilty();
 ?>
 <div class="container-fluid col-lg-4 offset-lg-4">
     <h1><span>Profile</span></h1>
+    <div class="mb-3">
+        <?php if ($isMe) : ?>
+            <?php if ($edit) : ?>
+                <a class="mt-3 btn btn-primary" href="?">View</a>
+            <?php else : ?>
+                <a class="mt-3 btn btn-primary" href="?edit=true">Edit</a>
+            <?php endif; ?>
+        <?php endif; ?>
+    </div>
+
+    <!-- Show public info (username, first name, last name) -->
+    <?php if (!$edit) : ?>
+        <div class="mb-3">
+            <label class="form-label" for="username">Username</label>
+            <input class="form-control" type="text" name="username" id="username" value="<?php se($username); ?>" readonly/>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="firstname">First Name</label>
+            <input class="form-control" type="text" name="firstname" id="firstname" value="<?php se($firstname) ?>" readonly/>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="lastname">Last Name</label>
+            <input class="form-control" type="text" name="lastname" id="lastname" value="<?php se($lastname) ?>" readonly/>
+        </div>
+    <?php endif; ?>
+
+    <?php if ($isMe && $edit) : ?>
     <form method="POST" onsubmit="return validate(this);">
         <div class="mb-3">
             <label class="form-label" for="email">Email</label>
@@ -118,6 +155,12 @@ $lastname = get_user_lastname();
             <label class="form-label" for="lastname">Last Name</label>
             <input class="form-control" type="text" name="lastname" id="lastname" value="<?php se($lastname) ?>" />
         </div>
+        <div class="mb-3">
+            <div class="form-check form-switch">
+                <input name="visibility" class="form-check-input p-2" type="checkbox" id="flexSwitchCheckDefault" <?php if ($visibility) echo "checked"; ?> autocomplete="off">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Make Profile Public</label>
+            </div>
+        </div>
         <!-- DO NOT PRELOAD PASSWORD -->
         <div class="mb-3"><h2>Password Reset</h2></div>
         <div class="mb-3">
@@ -134,6 +177,7 @@ $lastname = get_user_lastname();
         </div>
         <input type="submit" class="mt-3 btn btn-primary" value="Update Profile" name="save" />
     </form>
+    <?php endif; ?>
 </div>
 
 <script>

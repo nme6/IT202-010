@@ -61,6 +61,10 @@ input {
     font-family: Segoe UI,Frutiger,Frutiger Linotype,Dejavu Sans,Helvetica Neue,Arial,sans-serif; 
 }
 
+.form-control[readonly] {
+    background-color: #c0c0c0;
+}
+
 input[type=submit] {
     background-color: silver;
     font-family: Segoe UI,Frutiger,Frutiger Linotype,Dejavu Sans,Helvetica Neue,Arial,sans-serif; 

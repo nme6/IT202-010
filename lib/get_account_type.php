@@ -1,7 +1,7 @@
-<?php
-function get_account_balance($aid)
+<?php 
+function get_account_type($aid)
 {
-    $query = "SELECT balance, id from Accounts ";
+    $query = "SELECT account_type, id from Accounts ";
     $params = null;
 
     /*
@@ -30,6 +30,6 @@ function get_account_balance($aid)
     }
 
     $account = $accounts[0];
-    $balance = (int)se($account, "balance","", false);
-    return $balance;
+    $type = se($account, "account_type","", false);
+    return $type;
 }

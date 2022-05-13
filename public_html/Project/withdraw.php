@@ -9,8 +9,12 @@
     $query = "SELECT account_number, account_type, balance, created, id from Accounts ";
     $params = null;
 
-    $query .= " WHERE user_id = :uid";
-    $params =  [":uid" => "$uid"];
+    /*
+    Neil Evans (nme6)
+    May 12th, 2022
+    */
+    $query .= " WHERE user_id = :uid AND is_active = 1 AND NOT account_type = :loan";
+    $params =  [":uid" => "$uid", ":loan" => "loan"];
 
     $query .= " ORDER BY created desc";
     $db = getDB();
@@ -86,5 +90,5 @@
     </div>
 </div>
 <?php
-require(__DIR__ . "/../../partials/flash.php");
+require_once(__DIR__ . "/../../partials/flash.php");
 ?>
