@@ -63,7 +63,7 @@
                 $owed = get_account_balance($dest)*-1;
                 if ($owed < $transfer)
                 {
-                    flash("You only have $owe more to pay off your loan", "warning");
+                    flash("You only have $owed more to pay off your loan", "warning");
                 }
                 else 
                 {
